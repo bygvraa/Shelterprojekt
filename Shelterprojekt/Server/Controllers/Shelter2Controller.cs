@@ -20,7 +20,5 @@ namespace Shelterprojekt.Server.Controllers
             return await service.GetSheltersAsync();
         }
 
-
-
     }
 }
