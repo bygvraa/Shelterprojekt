@@ -1,4 +1,5 @@
 ﻿using MongoDB.Driver;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace Shelterprojekt.Shared
 {
-    public class MongoDBService
+    public class MainDbContext
     {
         private readonly IMongoDatabase _mongoDatabase;
 
-        public MongoDBService()
+        public MainDbContext()
         {
             // create a mongodb client
-            var client = new MongoClient("mongodb://127.0.0.1:27017");
+            var client = new MongoClient("mongodb://127.0.0.1:27017/");
 
             // get shelter database from client
             _mongoDatabase = client.GetDatabase("shelterdb");
@@ -25,7 +26,7 @@ namespace Shelterprojekt.Shared
         {
             get
             {
-                return _mongoDatabase.GetCollection<Shelter>("shelters");
+                return _mongoDatabase.GetCollection<Shelter>("shelter_minus");
             }
         }
 
