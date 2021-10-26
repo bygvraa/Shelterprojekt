@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Shelterprojekt.Shared.IService;
+using Shelterprojekt.Shared.Service;
 using System.Linq;
 
 namespace Shelterprojekt.Server
@@ -25,6 +27,8 @@ namespace Shelterprojekt.Server
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddScoped<IShelterService, ShelterService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
