@@ -14,7 +14,7 @@ namespace Shelterprojekt.Server.Controllers
         ShelterService service = new ShelterService();
 
         [HttpGet]
-        [Route("api.shelter/index")]
+        [Route("api/shelter/index")]
         public async Task<IEnumerable<Shelter>> Index()
         {
             return await service.GetSheltersAsync();
