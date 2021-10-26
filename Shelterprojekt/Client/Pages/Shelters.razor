@@ -1,7 +1,39 @@
 ﻿@page "/shelters"
+@using Shelterprojekt.Client.Shared
+@inject HttpClient Http
 
-<h3>Shelters</h3>
+<h1>Shelters</h1>
 
-@code {
+<br />
 
-}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Shelter navn</th>
+            <th>Placeholder</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var shelter in ShelterList)
+        {
+<tr>
+    <td>@shelter.Navn</td>
+</tr>}
+
+    </tbody>
+</table>
+@code { private List<shelterInfo> shopping = new List<shelterInfo>();
+            private string newItem;
+
+            private shelterInfo[] ShelterList = Array.Empty<shelterInfo>();
+
+
+
+            protected override async Task OnInitializedAsync()
+            {
+                ShelterList = await Http.GetFromJsonAsync<shelterInfo[]>("shelter");
+            }
+    }
+
+
+
