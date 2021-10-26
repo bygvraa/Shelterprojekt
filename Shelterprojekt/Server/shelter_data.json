@@ -1,0 +1,1122 @@
+[{
+  "_id": {
+    "$oid": "61765a74e4c5e70c180a875d"
+  },
+  "geometry": {
+    "type": "MultiPoint",
+    "coordinates": [
+      [
+        10.1138908206156,
+        56.1402035054648
+      ]
+    ]
+  },
+  "properties": {
+    "temakode": 5800,
+    "temanavn": "t_5800_fac_pkt_t",
+    "objekt_id": "996d7ff4-154a-11ec-954f-0661a94bd4ab",
+    "versions_id": "996d7d6a-154a-11ec-954e-0661a94bd4ab",
+    "systid_fra": "2021-09-14 12:57:48.546609+02",
+    "systid_til": null,
+    "oprettet": "2021-09-14 12:57:48.546609+02",
+    "cvr_kode": 55133018,
+    "cvr_navn": "Aarhus Kommune",
+    "kommunekode": 751,
+    "bruger_id": "751",
+    "oprindkode": 1,
+    "oprindelse": "Ortofoto",
+    "statuskode": 3,
+    "status": "Gældende / Vedtaget",
+    "off_kode": 1,
+    "offentlig": "Synlig for alle",
+    "noegle": null,
+    "note": null,
+    "facil_ty_k": 3012,
+    "facil_ty": "Shelter",
+    "navn": "Shelterplads i Stavtrup",
+    "beskrivels": null,
+    "lang_beskr": null,
+    "uk_k_beskr": null,
+    "uk_l_beskr": null,
+    "d_k_beskr": null,
+    "d_l_beskr": "Shelter skal bookes via friluftslivaarhus.dk",
+    "ansvar_org": null,
+    "kontak_ved": null,
+    "handicap_k": null,
+    "handicap": null,
+    "antal_pl": 9,
+    "vejkode": null,
+    "vejnavn": null,
+    "cvf_vejkode": null,
+    "husnr": null,
+    "postnr": null,
+    "postnr_by": null,
+    "adr_id": null,
+    "ansva_v_k": null,
+    "ansva_v": null,
+    "link": "http://friluftslivaarhus.dk"
+  },
+  "type": "Feature"
+},{
+  "_id": {
+    "$oid": "61765a74e4c5e70c180a8761"
+  },
+  "geometry": {
+    "type": "MultiPoint",
+    "coordinates": [
+      [
+        10.3058187109953,
+        56.2533536780254
+      ]
+    ]
+  },
+  "properties": {
+    "temakode": 5800,
+    "temanavn": "t_5800_fac_pkt_t",
+    "objekt_id": "9cb35d33-7d5e-408b-b6c5-23166b1951e1",
+    "versions_id": "bc50c470-8abf-11ea-a125-062b96cbb5a0",
+    "systid_fra": "2020-04-30 10:50:55.734931+02",
+    "systid_til": null,
+    "oprettet": "2020-01-24 12:01:20.765906+01",
+    "cvr_kode": 55133018,
+    "cvr_navn": "Aarhus Kommune",
+    "kommunekode": 751,
+    "bruger_id": "Koudal",
+    "oprindkode": 0,
+    "oprindelse": "Ikke udfyldt",
+    "statuskode": 3,
+    "status": "Gældende / Vedtaget",
+    "off_kode": 1,
+    "offentlig": "Synlig for alle",
+    "noegle": null,
+    "note": null,
+    "facil_ty_k": 3012,
+    "facil_ty": "Shelter",
+    "navn": "Shelterplads Skødstrup Søndersø                   ",
+    "beskrivels": "Shelterplads med 2 shelters og bålplads                                                                                                                                                                                                                       ",
+    "lang_beskr": "Shelterplads med 2 shelters med hver plads til 4-6 personer, beliggende i den sydlige ende af Skødstrup. Pladsen har er stor græsareal og en mindre bålplads, og ligger i nærheden af Skødstrup Søndersø. Reservation er ikke muligt.",
+    "uk_k_beskr": null,
+    "uk_l_beskr": null,
+    "d_k_beskr": null,
+    "d_l_beskr": null,
+    "ansvar_org": "Til faciliteter uden organisation                                                                                                                                                                                                                             ",
+    "kontak_ved": ", ",
+    "handicap_k": 3,
+    "handicap": "Ikke handicapegnet",
+    "antal_pl": 2,
+    "vejkode": null,
+    "vejnavn": null,
+    "cvf_vejkode": null,
+    "husnr": null,
+    "postnr": null,
+    "postnr_by": null,
+    "adr_id": null,
+    "ansva_v_k": 9,
+    "ansva_v": "Ukendt",
+    "link": "                                                                                                                                                                                                                                                               "
+  },
+  "type": "Feature"
+},{
+  "_id": {
+    "$oid": "61765a74e4c5e70c180a8765"
+  },
+  "geometry": {
+    "type": "MultiPoint",
+    "coordinates": [
+      [
+        10.1694600340565,
+        56.2354309658486
+      ]
+    ]
+  },
+  "properties": {
+    "temakode": 5800,
+    "temanavn": "t_5800_fac_pkt_t",
+    "objekt_id": "157c61a2-9c0a-11ea-b228-062b96cbb5a0",
+    "versions_id": "6d6710b4-9f3f-11ea-bf8f-06f2586f84aa",
+    "systid_fra": "2020-05-26 12:55:10.407918+02",
+    "systid_til": null,
+    "oprettet": "2020-05-22 10:56:11.202333+02",
+    "cvr_kode": 55133018,
+    "cvr_navn": "Aarhus Kommune",
+    "kommunekode": 751,
+    "bruger_id": "751",
+    "oprindkode": 1,
+    "oprindelse": "Ortofoto",
+    "statuskode": 3,
+    "status": "Gældende / Vedtaget",
+    "off_kode": 1,
+    "offentlig": "Synlig for alle",
+    "noegle": null,
+    "note": null,
+    "facil_ty_k": 3012,
+    "facil_ty": "Shelter",
+    "navn": "Shelter i Lisbjerg gammel skov",
+    "beskrivels": null,
+    "lang_beskr": "Shelter skal bookes via friluftslivaarhus.dk",
+    "uk_k_beskr": null,
+    "uk_l_beskr": null,
+    "d_k_beskr": null,
+    "d_l_beskr": null,
+    "ansvar_org": null,
+    "kontak_ved": null,
+    "handicap_k": null,
+    "handicap": null,
+    "antal_pl": 10,
+    "vejkode": null,
+    "vejnavn": null,
+    "cvf_vejkode": null,
+    "husnr": null,
+    "postnr": null,
+    "postnr_by": null,
+    "adr_id": null,
+    "ansva_v_k": null,
+    "ansva_v": null,
+    "link": "http://friluftslivaarhus.dk/"
+  },
+  "type": "Feature"
+},{
+  "_id": {
+    "$oid": "61765a74e4c5e70c180a8768"
+  },
+  "geometry": {
+    "type": "MultiPoint",
+    "coordinates": [
+      [
+        10.2673640974013,
+        56.0519769513015
+      ]
+    ]
+  },
+  "properties": {
+    "temakode": 5800,
+    "temanavn": "t_5800_fac_pkt_t",
+    "objekt_id": "15838a7c-9c0a-11ea-b248-062b96cbb5a0",
+    "versions_id": "6cee069c-9f3f-11ea-bf7d-06f2586f84aa",
+    "systid_fra": "2020-05-26 12:55:10.407918+02",
+    "systid_til": null,
+    "oprettet": "2020-05-22 10:56:11.202333+02",
+    "cvr_kode": 55133018,
+    "cvr_navn": "Aarhus Kommune",
+    "kommunekode": 751,
+    "bruger_id": "751",
+    "oprindkode": 1,
+    "oprindelse": "Ortofoto",
+    "statuskode": 3,
+    "status": "Gældende / Vedtaget",
+    "off_kode": 1,
+    "offentlig": "Synlig for alle",
+    "noegle": null,
+    "note": null,
+    "facil_ty_k": 3012,
+    "facil_ty": "Shelter",
+    "navn": "Shelter ved Mariendal Strand",
+    "beskrivels": null,
+    "lang_beskr": "Shelter skal bookes via friluftslivaarhus.dk",
+    "uk_k_beskr": null,
+    "uk_l_beskr": null,
+    "d_k_beskr": null,
+    "d_l_beskr": null,
+    "ansvar_org": null,
+    "kontak_ved": null,
+    "handicap_k": null,
+    "handicap": null,
+    "antal_pl": 1,
+    "vejkode": null,
+    "vejnavn": null,
+    "cvf_vejkode": null,
+    "husnr": null,
+    "postnr": null,
+    "postnr_by": null,
+    "adr_id": null,
+    "ansva_v_k": null,
+    "ansva_v": null,
+    "link": "http://friluftslivaarhus.dk/"
+  },
+  "type": "Feature"
+},{
+  "_id": {
+    "$oid": "61765a74e4c5e70c180a8769"
+  },
+  "geometry": {
+    "type": "MultiPoint",
+    "coordinates": [
+      [
+        10.1832491190344,
+        56.1868089835271
+      ]
+    ]
+  },
+  "properties": {
+    "temakode": 5800,
+    "temanavn": "t_5800_fac_pkt_t",
+    "objekt_id": "157e24c4-9c0a-11ea-b230-062b96cbb5a0",
+    "versions_id": "6cf4eb4c-9f3f-11ea-bf7e-06f2586f84aa",
+    "systid_fra": "2020-05-26 12:55:10.407918+02",
+    "systid_til": null,
+    "oprettet": "2020-05-22 10:56:11.202333+02",
+    "cvr_kode": 55133018,
+    "cvr_navn": "Aarhus Kommune",
+    "kommunekode": 751,
+    "bruger_id": "751",
+    "oprindkode": 1,
+    "oprindelse": "Ortofoto",
+    "statuskode": 3,
+    "status": "Gældende / Vedtaget",
+    "off_kode": 1,
+    "offentlig": "Synlig for alle",
+    "noegle": null,
+    "note": null,
+    "facil_ty_k": 3012,
+    "facil_ty": "Shelter",
+    "navn": "Shelter på Vestereng",
+    "beskrivels": null,
+    "lang_beskr": "Shelter skal bookes via friluftslivaarhus.dk",
+    "uk_k_beskr": null,
+    "uk_l_beskr": null,
+    "d_k_beskr": null,
+    "d_l_beskr": null,
+    "ansvar_org": null,
+    "kontak_ved": null,
+    "handicap_k": null,
+    "handicap": null,
+    "antal_pl": 10,
+    "vejkode": null,
+    "vejnavn": null,
+    "cvf_vejkode": null,
+    "husnr": null,
+    "postnr": null,
+    "postnr_by": null,
+    "adr_id": null,
+    "ansva_v_k": null,
+    "ansva_v": null,
+    "link": "http://friluftslivaarhus.dk/"
+  },
+  "type": "Feature"
+},{
+  "_id": {
+    "$oid": "61765a74e4c5e70c180a876a"
+  },
+  "geometry": {
+    "type": "MultiPoint",
+    "coordinates": [
+      [
+        10.220276878772,
+        56.2136039921625
+      ]
+    ]
+  },
+  "properties": {
+    "temakode": 5800,
+    "temanavn": "t_5800_fac_pkt_t",
+    "objekt_id": "1581c962-9c0a-11ea-b242-062b96cbb5a0",
+    "versions_id": "6d0273f2-9f3f-11ea-bf80-06f2586f84aa",
+    "systid_fra": "2020-05-26 12:55:10.407918+02",
+    "systid_til": null,
+    "oprettet": "2020-05-22 10:56:11.202333+02",
+    "cvr_kode": 55133018,
+    "cvr_navn": "Aarhus Kommune",
+    "kommunekode": 751,
+    "bruger_id": "751",
+    "oprindkode": 1,
+    "oprindelse": "Ortofoto",
+    "statuskode": 3,
+    "status": "Gældende / Vedtaget",
+    "off_kode": 1,
+    "offentlig": "Synlig for alle",
+    "noegle": null,
+    "note": null,
+    "facil_ty_k": 3012,
+    "facil_ty": "Shelter",
+    "navn": "Shelterplads ved Egå Engsø¸ - fem stk.",
+    "beskrivels": null,
+    "lang_beskr": "Shelter skal bookes via friluftslivaarhus.dk",
+    "uk_k_beskr": null,
+    "uk_l_beskr": null,
+    "d_k_beskr": null,
+    "d_l_beskr": null,
+    "ansvar_org": null,
+    "kontak_ved": null,
+    "handicap_k": null,
+    "handicap": null,
+    "antal_pl": 4,
+    "vejkode": null,
+    "vejnavn": null,
+    "cvf_vejkode": null,
+    "husnr": null,
+    "postnr": null,
+    "postnr_by": null,
+    "adr_id": null,
+    "ansva_v_k": null,
+    "ansva_v": null,
+    "link": "http://friluftslivaarhus.dk/"
+  },
+  "type": "Feature"
+},{
+  "_id": {
+    "$oid": "61765a74e4c5e70c180a876b"
+  },
+  "geometry": {
+    "type": "MultiPoint",
+    "coordinates": [
+      [
+        10.2301761302999,
+        56.2392579795894
+      ]
+    ]
+  },
+  "properties": {
+    "temakode": 5800,
+    "temanavn": "t_5800_fac_pkt_t",
+    "objekt_id": "15833b4e-9c0a-11ea-b246-062b96cbb5a0",
+    "versions_id": "6d0fdab0-9f3f-11ea-bf82-06f2586f84aa",
+    "systid_fra": "2020-05-26 12:55:10.407918+02",
+    "systid_til": null,
+    "oprettet": "2020-05-22 10:56:11.202333+02",
+    "cvr_kode": 55133018,
+    "cvr_navn": "Aarhus Kommune",
+    "kommunekode": 751,
+    "bruger_id": "751",
+    "oprindkode": 1,
+    "oprindelse": "Ortofoto",
+    "statuskode": 3,
+    "status": "Gældende / Vedtaget",
+    "off_kode": 1,
+    "offentlig": "Synlig for alle",
+    "noegle": null,
+    "note": null,
+    "facil_ty_k": 3012,
+    "facil_ty": "Shelter",
+    "navn": "Madpakkehus i Æblehaven",
+    "beskrivels": null,
+    "lang_beskr": "Shelter skal bookes via friluftslivaarhus.dk",
+    "uk_k_beskr": null,
+    "uk_l_beskr": null,
+    "d_k_beskr": null,
+    "d_l_beskr": null,
+    "ansvar_org": null,
+    "kontak_ved": null,
+    "handicap_k": null,
+    "handicap": null,
+    "antal_pl": 5,
+    "vejkode": null,
+    "vejnavn": null,
+    "cvf_vejkode": null,
+    "husnr": null,
+    "postnr": null,
+    "postnr_by": null,
+    "adr_id": null,
+    "ansva_v_k": null,
+    "ansva_v": null,
+    "link": "http://friluftslivaarhus.dk/"
+  },
+  "type": "Feature"
+},{
+  "_id": {
+    "$oid": "61765a74e4c5e70c180a876c"
+  },
+  "geometry": {
+    "type": "MultiPoint",
+    "coordinates": [
+      [
+        10.2302168695005,
+        56.1135680376493
+      ]
+    ]
+  },
+  "properties": {
+    "temakode": 5800,
+    "temanavn": "t_5800_fac_pkt_t",
+    "objekt_id": "157ec41a-9c0a-11ea-b234-062b96cbb5a0",
+    "versions_id": "6d1d954c-9f3f-11ea-bf84-06f2586f84aa",
+    "systid_fra": "2020-05-26 12:55:10.407918+02",
+    "systid_til": null,
+    "oprettet": "2020-05-22 10:56:11.202333+02",
+    "cvr_kode": 55133018,
+    "cvr_navn": "Aarhus Kommune",
+    "kommunekode": 751,
+    "bruger_id": "751",
+    "oprindkode": 1,
+    "oprindelse": "Ortofoto",
+    "statuskode": 3,
+    "status": "Gældende / Vedtaget",
+    "off_kode": 1,
+    "offentlig": "Synlig for alle",
+    "noegle": null,
+    "note": null,
+    "facil_ty_k": 3012,
+    "facil_ty": "Shelter",
+    "navn": "Dagshelter i Hørhaven",
+    "beskrivels": null,
+    "lang_beskr": "Shelter skal bookes via friluftslivaarhus.dk",
+    "uk_k_beskr": null,
+    "uk_l_beskr": null,
+    "d_k_beskr": null,
+    "d_l_beskr": null,
+    "ansvar_org": null,
+    "kontak_ved": null,
+    "handicap_k": null,
+    "handicap": null,
+    "antal_pl": 3,
+    "vejkode": null,
+    "vejnavn": null,
+    "cvf_vejkode": null,
+    "husnr": null,
+    "postnr": null,
+    "postnr_by": null,
+    "adr_id": null,
+    "ansva_v_k": null,
+    "ansva_v": null,
+    "link": "http://friluftslivaarhus.dk/"
+  },
+  "type": "Feature"
+},{
+  "_id": {
+    "$oid": "61765a74e4c5e70c180a876d"
+  },
+  "geometry": {
+    "type": "MultiPoint",
+    "coordinates": [
+      [
+        10.227179945693,
+        56.114670007543
+      ]
+    ]
+  },
+  "properties": {
+    "temakode": 5800,
+    "temanavn": "t_5800_fac_pkt_t",
+    "objekt_id": "157bed08-9c0a-11ea-b226-062b96cbb5a0",
+    "versions_id": "6d2b6532-9f3f-11ea-bf86-06f2586f84aa",
+    "systid_fra": "2020-05-26 12:55:10.407918+02",
+    "systid_til": null,
+    "oprettet": "2020-05-22 10:56:11.202333+02",
+    "cvr_kode": 55133018,
+    "cvr_navn": "Aarhus Kommune",
+    "kommunekode": 751,
+    "bruger_id": "751",
+    "oprindkode": 1,
+    "oprindelse": "Ortofoto",
+    "statuskode": 3,
+    "status": "Gældende / Vedtaget",
+    "off_kode": 1,
+    "offentlig": "Synlig for alle",
+    "noegle": null,
+    "note": null,
+    "facil_ty_k": 3012,
+    "facil_ty": "Shelter",
+    "navn": "Shelter i Hørhaven i skoven",
+    "beskrivels": null,
+    "lang_beskr": "Shelter skal bookes via friluftslivaarhus.dk",
+    "uk_k_beskr": null,
+    "uk_l_beskr": null,
+    "d_k_beskr": null,
+    "d_l_beskr": null,
+    "ansvar_org": null,
+    "kontak_ved": null,
+    "handicap_k": null,
+    "handicap": null,
+    "antal_pl": 7,
+    "vejkode": null,
+    "vejnavn": null,
+    "cvf_vejkode": null,
+    "husnr": null,
+    "postnr": null,
+    "postnr_by": null,
+    "adr_id": null,
+    "ansva_v_k": null,
+    "ansva_v": null,
+    "link": "http://friluftslivaarhus.dk/"
+  },
+  "type": "Feature"
+},{
+  "_id": {
+    "$oid": "61765a74e4c5e70c180a876f"
+  },
+  "geometry": {
+    "type": "MultiPoint",
+    "coordinates": [
+      [
+        10.2444149091573,
+        56.0883729513367
+      ]
+    ]
+  },
+  "properties": {
+    "temakode": 5800,
+    "temanavn": "t_5800_fac_pkt_t",
+    "objekt_id": "157d058a-9c0a-11ea-b22a-062b96cbb5a0",
+    "versions_id": "6d38ccf4-9f3f-11ea-bf88-06f2586f84aa",
+    "systid_fra": "2020-05-26 12:55:10.407918+02",
+    "systid_til": null,
+    "oprettet": "2020-05-22 10:56:11.202333+02",
+    "cvr_kode": 55133018,
+    "cvr_navn": "Aarhus Kommune",
+    "kommunekode": 751,
+    "bruger_id": "751",
+    "oprindkode": 1,
+    "oprindelse": "Ortofoto",
+    "statuskode": 3,
+    "status": "Gældende / Vedtaget",
+    "off_kode": 1,
+    "offentlig": "Synlig for alle",
+    "noegle": null,
+    "note": null,
+    "facil_ty_k": 3012,
+    "facil_ty": "Shelter",
+    "navn": "Shelter ved Moesgård Strand",
+    "beskrivels": null,
+    "lang_beskr": "Shelter skal bookes via friluftslivaarhus.dk",
+    "uk_k_beskr": null,
+    "uk_l_beskr": null,
+    "d_k_beskr": null,
+    "d_l_beskr": null,
+    "ansvar_org": null,
+    "kontak_ved": null,
+    "handicap_k": null,
+    "handicap": null,
+    "antal_pl": 10,
+    "vejkode": null,
+    "vejnavn": null,
+    "cvf_vejkode": null,
+    "husnr": null,
+    "postnr": null,
+    "postnr_by": null,
+    "adr_id": null,
+    "ansva_v_k": null,
+    "ansva_v": null,
+    "link": "http://friluftslivaarhus.dk/"
+  },
+  "type": "Feature"
+},{
+  "_id": {
+    "$oid": "61765a74e4c5e70c180a8771"
+  },
+  "geometry": {
+    "type": "MultiPoint",
+    "coordinates": [
+      [
+        10.2294949927686,
+        56.1128799746459
+      ]
+    ]
+  },
+  "properties": {
+    "temakode": 5800,
+    "temanavn": "t_5800_fac_pkt_t",
+    "objekt_id": "157dca1a-9c0a-11ea-b22e-062b96cbb5a0",
+    "versions_id": "6d46009a-9f3f-11ea-bf8a-06f2586f84aa",
+    "systid_fra": "2020-05-26 12:55:10.407918+02",
+    "systid_til": null,
+    "oprettet": "2020-05-22 10:56:11.202333+02",
+    "cvr_kode": 55133018,
+    "cvr_navn": "Aarhus Kommune",
+    "kommunekode": 751,
+    "bruger_id": "751",
+    "oprindkode": 1,
+    "oprindelse": "Ortofoto",
+    "statuskode": 3,
+    "status": "Gældende / Vedtaget",
+    "off_kode": 1,
+    "offentlig": "Synlig for alle",
+    "noegle": null,
+    "note": null,
+    "facil_ty_k": 3012,
+    "facil_ty": "Shelter",
+    "navn": "Shelter i Hørhaven på bakken",
+    "beskrivels": null,
+    "lang_beskr": "Shelter skal bookes via friluftslivaarhus.dk",
+    "uk_k_beskr": null,
+    "uk_l_beskr": null,
+    "d_k_beskr": null,
+    "d_l_beskr": null,
+    "ansvar_org": null,
+    "kontak_ved": null,
+    "handicap_k": null,
+    "handicap": null,
+    "antal_pl": 7,
+    "vejkode": null,
+    "vejnavn": null,
+    "cvf_vejkode": null,
+    "husnr": null,
+    "postnr": null,
+    "postnr_by": null,
+    "adr_id": null,
+    "ansva_v_k": null,
+    "ansva_v": null,
+    "link": "http://friluftslivaarhus.dk/"
+  },
+  "type": "Feature"
+},{
+  "_id": {
+    "$oid": "61765a74e4c5e70c180a8775"
+  },
+  "geometry": {
+    "type": "MultiPoint",
+    "coordinates": [
+      [
+        10.1422530421788,
+        56.1504079630261
+      ]
+    ]
+  },
+  "properties": {
+    "temakode": 5800,
+    "temanavn": "t_5800_fac_pkt_t",
+    "objekt_id": "157a05a6-9c0a-11ea-b224-062b96cbb5a0",
+    "versions_id": "6d605d64-9f3f-11ea-bf8e-06f2586f84aa",
+    "systid_fra": "2020-05-26 12:55:10.407918+02",
+    "systid_til": null,
+    "oprettet": "2020-05-22 10:56:11.202333+02",
+    "cvr_kode": 55133018,
+    "cvr_navn": "Aarhus Kommune",
+    "kommunekode": 751,
+    "bruger_id": "751",
+    "oprindkode": 1,
+    "oprindelse": "Ortofoto",
+    "statuskode": 3,
+    "status": "Gældende / Vedtaget",
+    "off_kode": 1,
+    "offentlig": "Synlig for alle",
+    "noegle": null,
+    "note": null,
+    "facil_ty_k": 3012,
+    "facil_ty": "Shelter",
+    "navn": "Shelter i Gjellerup Skov",
+    "beskrivels": null,
+    "lang_beskr": "Shelter skal bookes via friluftslivaarhus.dk",
+    "uk_k_beskr": null,
+    "uk_l_beskr": null,
+    "d_k_beskr": null,
+    "d_l_beskr": null,
+    "ansvar_org": null,
+    "kontak_ved": null,
+    "handicap_k": null,
+    "handicap": null,
+    "antal_pl": 1,
+    "vejkode": null,
+    "vejnavn": null,
+    "cvf_vejkode": null,
+    "husnr": null,
+    "postnr": null,
+    "postnr_by": null,
+    "adr_id": null,
+    "ansva_v_k": null,
+    "ansva_v": null,
+    "link": "http://friluftslivaarhus.dk/"
+  },
+  "type": "Feature"
+},{
+  "_id": {
+    "$oid": "61765a74e4c5e70c180a8776"
+  },
+  "geometry": {
+    "type": "MultiPoint",
+    "coordinates": [
+      [
+        10.2277139371157,
+        56.0974080157968
+      ]
+    ]
+  },
+  "properties": {
+    "temakode": 5800,
+    "temanavn": "t_5800_fac_pkt_t",
+    "objekt_id": "157e74b0-9c0a-11ea-b232-062b96cbb5a0",
+    "versions_id": "a702c6d0-9f42-11ea-9495-06f2586f84aa",
+    "systid_fra": "2020-05-26 13:18:40.284954+02",
+    "systid_til": null,
+    "oprettet": "2020-05-22 10:56:11.202333+02",
+    "cvr_kode": 55133018,
+    "cvr_navn": "Aarhus Kommune",
+    "kommunekode": 751,
+    "bruger_id": "751",
+    "oprindkode": 1,
+    "oprindelse": "Ortofoto",
+    "statuskode": 3,
+    "status": "Gældende / Vedtaget",
+    "off_kode": 1,
+    "offentlig": "Synlig for alle",
+    "noegle": null,
+    "note": null,
+    "facil_ty_k": 3012,
+    "facil_ty": "Shelter",
+    "navn": "Shelter i Moesgård Skov",
+    "beskrivels": null,
+    "lang_beskr": "Shelter skal bookes via friluftslivaarhus.dk",
+    "uk_k_beskr": null,
+    "uk_l_beskr": null,
+    "d_k_beskr": null,
+    "d_l_beskr": null,
+    "ansvar_org": null,
+    "kontak_ved": null,
+    "handicap_k": null,
+    "handicap": null,
+    "antal_pl": 7,
+    "vejkode": null,
+    "vejnavn": null,
+    "cvf_vejkode": null,
+    "husnr": null,
+    "postnr": null,
+    "postnr_by": null,
+    "adr_id": null,
+    "ansva_v_k": null,
+    "ansva_v": null,
+    "link": "http://friluftslivaarhus.dk/"
+  },
+  "type": "Feature"
+},{
+  "_id": {
+    "$oid": "61765a74e4c5e70c180a87b7"
+  },
+  "geometry": {
+    "type": "MultiPoint",
+    "coordinates": [
+      [
+        10.1618161804432,
+        56.1841560048164
+      ]
+    ]
+  },
+  "properties": {
+    "temakode": 5800,
+    "temanavn": "t_5800_fac_pkt_t",
+    "objekt_id": "157f69ba-9c0a-11ea-b238-062b96cbb5a0",
+    "versions_id": "6cd2ea60-9f3f-11ea-bf79-06f2586f84aa",
+    "systid_fra": "2020-05-26 12:55:10.407918+02",
+    "systid_til": null,
+    "oprettet": "2020-05-22 10:56:11.202333+02",
+    "cvr_kode": 55133018,
+    "cvr_navn": "Aarhus Kommune",
+    "kommunekode": 751,
+    "bruger_id": "751",
+    "oprindkode": 1,
+    "oprindelse": "Ortofoto",
+    "statuskode": 3,
+    "status": "Gældende / Vedtaget",
+    "off_kode": 1,
+    "offentlig": "Synlig for alle",
+    "noegle": null,
+    "note": null,
+    "facil_ty_k": 3012,
+    "facil_ty": "Shelter",
+    "navn": "Shelter i Brendstrup Skov",
+    "beskrivels": null,
+    "lang_beskr": "Shelter skal bookes via friluftslivaarhus.dk",
+    "uk_k_beskr": null,
+    "uk_l_beskr": null,
+    "d_k_beskr": null,
+    "d_l_beskr": null,
+    "ansvar_org": null,
+    "kontak_ved": null,
+    "handicap_k": null,
+    "handicap": null,
+    "antal_pl": 3,
+    "vejkode": null,
+    "vejnavn": null,
+    "cvf_vejkode": null,
+    "husnr": null,
+    "postnr": null,
+    "postnr_by": null,
+    "adr_id": null,
+    "ansva_v_k": null,
+    "ansva_v": null,
+    "link": "http://friluftslivaarhus.dk/"
+  },
+  "type": "Feature"
+},{
+  "_id": {
+    "$oid": "61765a74e4c5e70c180a87b8"
+  },
+  "geometry": {
+    "type": "MultiPoint",
+    "coordinates": [
+      [
+        10.1717740730878,
+        56.2268179774504
+      ]
+    ]
+  },
+  "properties": {
+    "temakode": 5800,
+    "temanavn": "t_5800_fac_pkt_t",
+    "objekt_id": "1582ea72-9c0a-11ea-b244-062b96cbb5a0",
+    "versions_id": "6cd9a1f2-9f3f-11ea-bf7a-06f2586f84aa",
+    "systid_fra": "2020-05-26 12:55:10.407918+02",
+    "systid_til": null,
+    "oprettet": "2020-05-22 10:56:11.202333+02",
+    "cvr_kode": 55133018,
+    "cvr_navn": "Aarhus Kommune",
+    "kommunekode": 751,
+    "bruger_id": "751",
+    "oprindkode": 1,
+    "oprindelse": "Ortofoto",
+    "statuskode": 3,
+    "status": "Gældende / Vedtaget",
+    "off_kode": 1,
+    "offentlig": "Synlig for alle",
+    "noegle": null,
+    "note": null,
+    "facil_ty_k": 3012,
+    "facil_ty": "Shelter",
+    "navn": "Shelterplads i Lisbjerg ny skov - fem stk.",
+    "beskrivels": null,
+    "lang_beskr": "Shelter skal bookes via friluftslivaarhus.dk",
+    "uk_k_beskr": null,
+    "uk_l_beskr": null,
+    "d_k_beskr": null,
+    "d_l_beskr": null,
+    "ansvar_org": null,
+    "kontak_ved": null,
+    "handicap_k": null,
+    "handicap": null,
+    "antal_pl": 1,
+    "vejkode": null,
+    "vejnavn": null,
+    "cvf_vejkode": null,
+    "husnr": null,
+    "postnr": null,
+    "postnr_by": null,
+    "adr_id": null,
+    "ansva_v_k": null,
+    "ansva_v": null,
+    "link": "http://friluftslivaarhus.dk/"
+  },
+  "type": "Feature"
+},{
+  "_id": {
+    "$oid": "61765a74e4c5e70c180a87d5"
+  },
+  "geometry": {
+    "type": "MultiPoint",
+    "coordinates": [
+      [
+        10.1975061753891,
+        56.0665749345383
+      ]
+    ]
+  },
+  "properties": {
+    "temakode": 5800,
+    "temanavn": "t_5800_fac_pkt_t",
+    "objekt_id": "157f1c30-9c0a-11ea-b236-062b96cbb5a0",
+    "versions_id": "6d748a28-9f3f-11ea-bf91-06f2586f84aa",
+    "systid_fra": "2020-05-26 12:55:10.407918+02",
+    "systid_til": null,
+    "oprettet": "2020-05-22 10:56:11.202333+02",
+    "cvr_kode": 55133018,
+    "cvr_navn": "Aarhus Kommune",
+    "kommunekode": 751,
+    "bruger_id": "751",
+    "oprindkode": 1,
+    "oprindelse": "Ortofoto",
+    "statuskode": 3,
+    "status": "Gældende / Vedtaget",
+    "off_kode": 1,
+    "offentlig": "Synlig for alle",
+    "noegle": null,
+    "note": null,
+    "facil_ty_k": 3012,
+    "facil_ty": "Shelter",
+    "navn": "Shelter i Vilhelmsborg Skov",
+    "beskrivels": null,
+    "lang_beskr": "Shelter skal bookes via friluftslivaarhus.dk",
+    "uk_k_beskr": null,
+    "uk_l_beskr": null,
+    "d_k_beskr": null,
+    "d_l_beskr": null,
+    "ansvar_org": null,
+    "kontak_ved": null,
+    "handicap_k": null,
+    "handicap": null,
+    "antal_pl": 1,
+    "vejkode": null,
+    "vejnavn": null,
+    "cvf_vejkode": null,
+    "husnr": null,
+    "postnr": null,
+    "postnr_by": null,
+    "adr_id": null,
+    "ansva_v_k": null,
+    "ansva_v": null,
+    "link": "http://friluftslivaarhus.dk/"
+  },
+  "type": "Feature"
+},{
+  "_id": {
+    "$oid": "61765a74e4c5e70c180a87d6"
+  },
+  "geometry": {
+    "type": "MultiPoint",
+    "coordinates": [
+      [
+        10.2027370112491,
+        56.206293019122
+      ]
+    ]
+  },
+  "properties": {
+    "temakode": 5800,
+    "temanavn": "t_5800_fac_pkt_t",
+    "objekt_id": "157d6d86-9c0a-11ea-b22c-062b96cbb5a0",
+    "versions_id": "30576da0-ee80-11ea-8a10-06d09fa510f4",
+    "systid_fra": "2020-09-04 09:28:11.965784+02",
+    "systid_til": null,
+    "oprettet": "2020-05-22 10:56:11.202333+02",
+    "cvr_kode": 55133018,
+    "cvr_navn": "Aarhus Kommune",
+    "kommunekode": 751,
+    "bruger_id": "751",
+    "oprindkode": 1,
+    "oprindelse": "Ortofoto",
+    "statuskode": 3,
+    "status": "Gældende / Vedtaget",
+    "off_kode": 1,
+    "offentlig": "Synlig for alle",
+    "noegle": null,
+    "note": null,
+    "facil_ty_k": 3012,
+    "facil_ty": "Shelter",
+    "navn": "Shelter i Mollerup Skov",
+    "beskrivels": null,
+    "lang_beskr": "Shelter skal bookes via friluftslivaarhus.dk",
+    "uk_k_beskr": null,
+    "uk_l_beskr": null,
+    "d_k_beskr": null,
+    "d_l_beskr": null,
+    "ansvar_org": null,
+    "kontak_ved": null,
+    "handicap_k": null,
+    "handicap": null,
+    "antal_pl": 2,
+    "vejkode": null,
+    "vejnavn": null,
+    "cvf_vejkode": null,
+    "husnr": null,
+    "postnr": null,
+    "postnr_by": null,
+    "adr_id": null,
+    "ansva_v_k": null,
+    "ansva_v": null,
+    "link": "http://friluftslivaarhus.dk/"
+  },
+  "type": "Feature"
+},{
+  "_id": {
+    "$oid": "61765a74e4c5e70c180a87d8"
+  },
+  "geometry": {
+    "type": "MultiPoint",
+    "coordinates": [
+      [
+        10.1141968502786,
+        56.0959056907147
+      ]
+    ]
+  },
+  "properties": {
+    "temakode": 5800,
+    "temanavn": "t_5800_fac_pkt_t",
+    "objekt_id": "b28c6e2c-5575-11eb-8f02-06d09fa510f4",
+    "versions_id": "b28c6c2e-5575-11eb-8f01-06d09fa510f4",
+    "systid_fra": "2021-01-13 09:02:35.810515+01",
+    "systid_til": null,
+    "oprettet": "2021-01-13 09:02:35.810515+01",
+    "cvr_kode": 55133018,
+    "cvr_navn": "Aarhus Kommune",
+    "kommunekode": 751,
+    "bruger_id": "751",
+    "oprindkode": 1,
+    "oprindelse": "Ortofoto",
+    "statuskode": 3,
+    "status": "Gældende / Vedtaget",
+    "off_kode": 1,
+    "offentlig": "Synlig for alle",
+    "noegle": null,
+    "note": null,
+    "facil_ty_k": 3012,
+    "facil_ty": "Shelter",
+    "navn": "Shelterplads i Tranbjerg Skov",
+    "beskrivels": null,
+    "lang_beskr": "Shelter skal bookes via friluftslivaarhus.dk",
+    "uk_k_beskr": null,
+    "uk_l_beskr": null,
+    "d_k_beskr": null,
+    "d_l_beskr": null,
+    "ansvar_org": null,
+    "kontak_ved": null,
+    "handicap_k": 9,
+    "handicap": "Ukendt",
+    "antal_pl": 0,
+    "vejkode": null,
+    "vejnavn": null,
+    "cvf_vejkode": null,
+    "husnr": null,
+    "postnr": null,
+    "postnr_by": null,
+    "adr_id": null,
+    "ansva_v_k": 2,
+    "ansva_v": "Kommune",
+    "link": "http://friluftslivaarhus.dk/"
+  },
+  "type": "Feature"
+},{
+  "_id": {
+    "$oid": "61765a74e4c5e70c180a87d9"
+  },
+  "geometry": {
+    "type": "MultiPoint",
+    "coordinates": [
+      [
+        10.0209340226472,
+        56.1283319644944
+      ]
+    ]
+  },
+  "properties": {
+    "temakode": 5800,
+    "temanavn": "t_5800_fac_pkt_t",
+    "objekt_id": "1584895e-9c0a-11ea-b24a-062b96cbb5a0",
+    "versions_id": "b293e72e-5575-11eb-8f03-06d09fa510f4",
+    "systid_fra": "2021-01-13 09:02:35.810515+01",
+    "systid_til": null,
+    "oprettet": "2020-05-22 10:56:11.202333+02",
+    "cvr_kode": 55133018,
+    "cvr_navn": "Aarhus Kommune",
+    "kommunekode": 751,
+    "bruger_id": "751",
+    "oprindkode": 1,
+    "oprindelse": "Ortofoto",
+    "statuskode": 3,
+    "status": "Gældende / Vedtaget",
+    "off_kode": 1,
+    "offentlig": "Synlig for alle",
+    "noegle": null,
+    "note": null,
+    "facil_ty_k": 3012,
+    "facil_ty": "Shelter",
+    "navn": "Åbo Skov, 2 shelters",
+    "beskrivels": null,
+    "lang_beskr": "Shelter skal bookes via friluftslivaarhus.dk",
+    "uk_k_beskr": null,
+    "uk_l_beskr": null,
+    "d_k_beskr": null,
+    "d_l_beskr": null,
+    "ansvar_org": null,
+    "kontak_ved": null,
+    "handicap_k": 9,
+    "handicap": "Ukendt",
+    "antal_pl": 0,
+    "vejkode": null,
+    "vejnavn": null,
+    "cvf_vejkode": null,
+    "husnr": null,
+    "postnr": null,
+    "postnr_by": null,
+    "adr_id": null,
+    "ansva_v_k": 2,
+    "ansva_v": "Kommune",
+    "link": "http://friluftslivaarhus.dk/"
+  },
+  "type": "Feature"
+}]
