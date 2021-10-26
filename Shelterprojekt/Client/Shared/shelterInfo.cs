@@ -7,7 +7,7 @@ namespace Shelterprojekt.Client.Shared
 {
     public class shelterInfo
     {
-        public string Navn { get; set; }
+        public string navn { get; set; }
         public string cvr_navn { get; set; }
         public string handicap { get; set; }
         public int antal_pl { get; set; }
