@@ -1,0 +1,56 @@
+﻿@page "/shelters2"
+@using Shelterprojekt.Shared
+@inject HttpClient Http
+
+<h3>Shelters</h3>
+
+@if (ShelterList == null)
+{
+<p><em>Loading...</em></p>
+<br />
+}
+else
+{
+<div class="col-md-8">
+    <table class="table table-striped table-bordered">
+        <thread>
+            <tr>
+                <th>Shelter Id</th>
+                <th>Navn</th>
+                <th>Cvr</th>
+                <th>Postnr</th>
+            </tr>
+        </thread>
+        <tbody>
+            @if (shelters.Count() > 0)
+            {
+                @foreach (var shelter in ShelterList)
+                {
+                    <tr>
+                        <td>@shelter.Id</td>
+                        <td>@shelter.Navn</td>
+                        <td>@shelter.Cvr</td>
+                        <td>@shelter.Postnr</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+}
+
+@code {
+    protected List<Shelter> ShelterList;
+
+
+    private async Task GetShelters()
+    {
+        ShelterList = await Http.GetJsonAsync<List<Shelter>>("api/product/index");
+    }
+
+    protected async Task AddShelter()
+    {
+        GetShelters();
+    }
+
+}
