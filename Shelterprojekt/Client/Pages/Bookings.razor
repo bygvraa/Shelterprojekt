@@ -10,9 +10,10 @@
     </div>
 </div>
 <br />
+
 @if (BookingList == null)
 {
-    <p><em>Loading...</em></p>
+    <p><em>Indlæser bookings...</em></p>
     <br />
 }
 else
@@ -20,7 +21,7 @@ else
     <table class='table'>
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Shelter</th>
                 <th>Dato</th>
             </tr>
         </thead>
@@ -28,11 +29,11 @@ else
             @foreach (var booking in BookingList)
             {
                 <tr>
-                    <td>@booking.Id</td>
+                    <td>@booking.shelterNavn</td>
                     <td>@booking.dato</td>
                     <td>
-                        <button class="btn btn-info" @onclick="@(async () => await EditProduct(@booking.Id))">Edit</button>
-                        <button class="btn btn-danger" @onclick="@(async () => await DeleteConfirmation(booking.Id))">Delete</button>
+                        <button class="btn btn-info" @onclick="@(async () => await EditProduct(@booking.shelterNavn))">Edit</button>
+                        <button class="btn btn-danger" @onclick="@(async () => await DeleteConfirmation(booking.shelterNavn))">Delete</button>
                     </td>
                 </tr>
             }
@@ -52,22 +53,18 @@ else
                     <div class="modal-body">
                         <form>
                             <div class="form-group">
-                                <label for="Id" class="control-label">Id</label>
-                                <input for="Id" class="form-control" @bind="@booking.Id" />
-                            </div>
-                            <div class="form-group">
-                                <label for="dato" class="control-label">Dato</label>
-                                <input for="dato" class="form-control" @bind="@booking.dato" />
-                            </div>
-                            <div class="form-group">
                                 <label asp-for="shelter" class="control-label">Shelter</label>
                                 <select asp-for="shelter" class="form-control" @bind="@booking.shelterId">
-                                    <option value="">-- Select Shelter --</option>
+                                    <option value="">-- Vælg shelter --</option>
                                     @foreach (var shelter in this.ShelterList)
                                     {
                                         <option value="@shelter.Id">@shelter.properties.navn</option>
                                     }
                                 </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="dato" class="control-label">Dato</label>
+                                <input type="date" for="dato" class="form-control" @bind="@booking.dato" />
                             </div>
                         </form>
                     </div>
@@ -90,15 +87,11 @@ else
                         <h4>Do you confirm delete this booking?</h4>
                         <table class="table">
                             <tr>
-                                <td>Id</td>
-                                <td>@booking.Id</td>
-                            </tr>
-                            <tr>
                                 <td>Shelter</td>
-                                <td>@booking.shelterId</td>
+                                <td>@booking.shelterNavn</td>
                             </tr>
                             <tr>
-                                <td>dato</td>
+                                <td>Dato</td>
                                 <td>@booking.dato</td>
                             </tr>
                         </table>
@@ -112,6 +105,7 @@ else
         </div>
     }
 }
+
 @code{
     protected string ModalTitle { get; set; }
     protected string SearchString { get; set; }
@@ -141,6 +135,7 @@ else
         this.isAdd = true;
         await GetBookings().ConfigureAwait(false);
     }
+
     protected async Task EditProduct(string id)
     {
         booking = await Http.GetJsonAsync<Booking>("api/booking/details/" + id);
@@ -148,6 +143,7 @@ else
         this.isAdd = true;
         await GetShelters().ConfigureAwait(false);
     }
+
     protected async Task SaveBooking()
     {
         if (booking.Id != null)
@@ -161,18 +157,21 @@ else
         this.isAdd = false;
         await GetBookings();
     }
+
     protected async Task DeleteConfirmation(string id)
     {
         ModalTitle = "Delete Booking";
         booking = await Http.GetJsonAsync<Booking>("/api/booking/details/" + id);
         this.isDelete = true;
     }
+
     protected async Task DeleteBooking(string id)
     {
         await Http.DeleteAsync("api/booking/delete/" + id);
         this.isDelete = false;
         await GetBookings();
     }
+
     protected void CloseModal()
     {
         this.isAdd = false;
