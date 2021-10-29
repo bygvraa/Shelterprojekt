@@ -1,4 +1,4 @@
-﻿using Shelterprojekt.Shared;
+﻿using Shelterprojekt.Shared.Models;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;

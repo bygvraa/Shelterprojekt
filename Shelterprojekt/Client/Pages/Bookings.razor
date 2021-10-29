@@ -1,0 +1,188 @@
+﻿@page "/bookings"
+@using Shelterprojekt.Shared.Models
+@inject HttpClient Http
+
+<h1>Bookings</h1>
+<br />
+<div>
+    <div style="float:right; margin-bottom:5px">
+        <button class="btn btn-primary" @onclick="@AddBooking">Add Booking</button>
+    </div>
+</div>
+<br />
+@if (BookingList == null)
+{
+    <p><em>Loading...</em></p>
+    <br />
+}
+else
+{
+    <table class='table'>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Dato</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var booking in BookingList)
+            {
+                <tr>
+                    <td>@booking.Id</td>
+                    <td>@booking.dato</td>
+                    <td>
+                        <button class="btn btn-info" @onclick="@(async () => await EditProduct(@booking.Id))">Edit</button>
+                        <button class="btn btn-danger" @onclick="@(async () => await DeleteConfirmation(booking.Id))">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    if (isAdd)
+    {
+        <div class="modal" tabindex="-1" style="display:block" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">@ModalTitle</h3>
+                        <button type="button" class="close" @onclick="@this.CloseModal">
+                            <span aria-hidden="true">x</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="Id" class="control-label">Id</label>
+                                <input for="Id" class="form-control" @bind="@booking.Id" />
+                            </div>
+                            <div class="form-group">
+                                <label for="dato" class="control-label">Dato</label>
+                                <input for="dato" class="form-control" @bind="@booking.dato" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="shelter" class="control-label">Shelter</label>
+                                <select asp-for="shelter" class="form-control" @bind="@booking.shelterId">
+                                    <option value="">-- Select Shelter --</option>
+                                    @foreach (var shelter in this.ShelterList)
+                                    {
+                                        <option value="@shelter.Id">@shelter.properties.navn</option>
+                                    }
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-block btn-success" @onclick="@(async () => await SaveBooking())" data-dismiss="modal">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    if (isDelete == true)
+    {
+        <div class="modal" tabindex="-1" style="display:block" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">@ModalTitle</h3>
+                    </div>
+                    <div class="modal-body">
+                        <h4>Do you confirm delete this booking?</h4>
+                        <table class="table">
+                            <tr>
+                                <td>Id</td>
+                                <td>@booking.Id</td>
+                            </tr>
+                            <tr>
+                                <td>Shelter</td>
+                                <td>@booking.shelterId</td>
+                            </tr>
+                            <tr>
+                                <td>dato</td>
+                                <td>@booking.dato</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" @onclick="@(async () => await DeleteBooking(booking.Id))" data-dismiss="modal">Confirm</button>
+                        <button class="btn btn-warning" @onclick="@CloseModal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+@code{
+    protected string ModalTitle { get; set; }
+    protected string SearchString { get; set; }
+
+    protected List<Booking> BookingList;
+    protected List<Shelter> ShelterList;
+
+    protected Booking booking = new Booking();
+    protected Boolean isDelete = false;
+    protected Boolean isAdd = false;
+
+    protected async Task GetBookings()
+    {
+        BookingList = await Http.GetJsonAsync<List<Booking>>("api/booking/index");
+    }
+
+    protected async Task GetShelters()
+    {
+        ShelterList = await Http.GetJsonAsync<List<Shelter>>("api/shelter/index");
+    }
+
+
+    protected async Task AddBooking()
+    {
+        booking = new Booking();
+        this.ModalTitle = "Add Booking";
+        this.isAdd = true;
+        await GetBookings().ConfigureAwait(false);
+    }
+    protected async Task EditProduct(string id)
+    {
+        booking = await Http.GetJsonAsync<Booking>("api/booking/details/" + id);
+        this.ModalTitle = "Edit Booking";
+        this.isAdd = true;
+        await GetShelters().ConfigureAwait(false);
+    }
+    protected async Task SaveBooking()
+    {
+        if (booking.Id != null)
+        {
+            await Http.SendJsonAsync(HttpMethod.Put, "api/booking/edit", booking);
+        }
+        else
+        {
+            await Http.SendJsonAsync(HttpMethod.Post, "/api/booking/create", booking);
+        }
+        this.isAdd = false;
+        await GetBookings();
+    }
+    protected async Task DeleteConfirmation(string id)
+    {
+        ModalTitle = "Delete Booking";
+        booking = await Http.GetJsonAsync<Booking>("/api/booking/details/" + id);
+        this.isDelete = true;
+    }
+    protected async Task DeleteBooking(string id)
+    {
+        await Http.DeleteAsync("api/booking/delete/" + id);
+        this.isDelete = false;
+        await GetBookings();
+    }
+    protected void CloseModal()
+    {
+        this.isAdd = false;
+        this.isDelete = false;
+    }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetShelters();
+        await GetBookings();
+    }
+}

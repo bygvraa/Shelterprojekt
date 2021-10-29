@@ -1,7 +1,8 @@
-﻿using MongoDB.Bson;
+﻿using System;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Shelterprojekt.Shared
+namespace Shelterprojekt.Shared.Models
 {
     [BsonIgnoreExtraElements]       // Ekstra elementer, der ikke specificeres i klassen (f.eks. 'geometry', og 'type') bliver ignoreret, når databasen loades. Kun elementer der eksplicit nævnes ('id' og 'properties') loades.
     public class Shelter
@@ -11,8 +12,8 @@ namespace Shelterprojekt.Shared
         public string Id { get; set; }
 
         public Properties properties { get; set; }
-
     }
+
 
 
     [BsonIgnoreExtraElements]
