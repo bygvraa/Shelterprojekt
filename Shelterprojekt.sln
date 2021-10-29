@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shelterprojekt.Server", "Shelterprojekt\Server\Shelterprojekt.Server.csproj", "{605B2DF5-79CA-4BE0-A72C-56E0C84442C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shelterprojekt.Server", "Shelterprojekt\Server\Shelterprojekt.Server.csproj", "{605B2DF5-79CA-4BE0-A72C-56E0C84442C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shelterprojekt.Client", "Shelterprojekt\Client\Shelterprojekt.Client.csproj", "{2E8431C3-BCA1-4236-8EEB-453940C3AEF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shelterprojekt.Client", "Shelterprojekt\Client\Shelterprojekt.Client.csproj", "{2E8431C3-BCA1-4236-8EEB-453940C3AEF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shelterprojekt.Shared", "Shelterprojekt\Shared\Shelterprojekt.Shared.csproj", "{570B55DD-2AF4-4842-90F2-4718A471AF32}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shelterprojekt.Shared", "Shelterprojekt\Shared\Shelterprojekt.Shared.csproj", "{570B55DD-2AF4-4842-90F2-4718A471AF32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
