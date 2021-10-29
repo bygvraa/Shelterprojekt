@@ -1,11 +1,7 @@
 ﻿using MongoDB.Driver;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Shelterprojekt.Shared
+namespace Shelterprojekt.Shared.Models
 {
     public class MainDbContext
     {
@@ -20,12 +16,21 @@ namespace Shelterprojekt.Shared
             _mongoDatabase = client.GetDatabase("shelterdb");
         }
 
-        // get shelters from _mongoDatabase
+        // henter shelters fra _mongoDatabase ("shelterdb")
         public IMongoCollection<Shelter> ShelterCollection
         {
             get
             {
                 return _mongoDatabase.GetCollection<Shelter>("shelter_minus");
+            }
+        }
+
+        // henter bookings fra _mongoDatabase ("shelterdb)
+        public IMongoCollection<Booking> BookingCollection
+        {
+            get
+            {
+                return _mongoDatabase.GetCollection<Booking>("bookings");
             }
         }
 

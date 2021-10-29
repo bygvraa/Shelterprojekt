@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shelterprojekt.Server.Services;
-using Shelterprojekt.Shared;
+using Shelterprojekt.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
