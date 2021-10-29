@@ -11,12 +11,12 @@ namespace Shelterprojekt.Client.Shared
         public string navn { get; set; }
         public string cvr_navn { get; set; }
         public string handicap { get; set; }
-        public double? antal_pl { get; set; }
-        public double? postnr { get; set; }
+        public string antal_pl { get; set; }
+        public string postnr { get; set; }
         public string vejnavn { get; set; }
         public string kontakt_ved { get; set; }
 
-        public shelterInfo(string navn, string cvr_navn, string handicap, double? antal_pl, double? postnr, string vejnavn, string kontakt_ved)
+        public shelterInfo(string navn, string cvr_navn, string handicap, string antal_pl, string postnr, string vejnavn, string kontakt_ved)
         {
             this.navn = navn;
             this.cvr_navn = cvr_navn;

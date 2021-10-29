@@ -42,10 +42,8 @@ namespace Shelterprojekt.Server.Controllers
                                                         $"{obj["properties"]["navn"]}",
                                                         $"{obj["properties"]["cvr_navn"]}",
                                                         $"{obj["properties"]["handicap"]}",
-                                                        0,
-                                                        5,
-                                                        //System.Convert.ToInt32($"{obj["properties"]["antal_pl"]}"),
-                                                        //System.Convert.ToInt32($"{obj["properties"]["postnr"]}"),
+                                                        $"{obj["properties"]["antal_pl"]}",
+                                                        $"{obj["properties"]["postnr"]}",
                                                         $"{obj["properties"]["vejnavn"]}",
                                                         $"{obj["properties"]["kontakt_ved"]}"
                                                         );
