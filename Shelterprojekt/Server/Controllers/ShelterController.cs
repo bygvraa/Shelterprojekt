@@ -41,6 +41,7 @@ namespace Shelterprojekt.Server.Controllers
                     shelterInfo shelter_1 = new shelterInfo(
                                                         $"{obj["properties"]["navn"]}",
                                                         $"{obj["properties"]["cvr_navn"]}",
+                                                        //Convert.ToInt32//
                                                         $"{obj["properties"]["handicap"]}",
                                                         $"{obj["properties"]["antal_pl"]}",
                                                         $"{obj["properties"]["postnr"]}",
