@@ -7,12 +7,25 @@ namespace Shelterprojekt.Client.Shared
 {
     public class shelterInfo
     {
+
         public string navn { get; set; }
         public string cvr_navn { get; set; }
         public string handicap { get; set; }
-        public int antal_pl { get; set; }
-        public int postnr { get; set; }
+        public double? antal_pl { get; set; }
+        public double? postnr { get; set; }
         public string vejnavn { get; set; }
         public string kontakt_ved { get; set; }
+
+        public shelterInfo(string navn, string cvr_navn, string handicap, double? antal_pl, double? postnr, string vejnavn, string kontakt_ved)
+        {
+            this.navn = navn;
+            this.cvr_navn = cvr_navn;
+            this.handicap = handicap;
+            this.antal_pl = antal_pl;
+            this.postnr = postnr;
+            this.vejnavn = vejnavn;
+            this.kontakt_ved = kontakt_ved;
+
+        }
     }
 }

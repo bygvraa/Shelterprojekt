@@ -4,14 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Shelterprojekt.Client.Shared;
-
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
 using Microsoft.Extensions.Logging;
 using System.IO;
+using Shelterprojekt.Server;
 using System.Text.Json;
 using Newtonsoft.Json;
 using System.Text.Json.Serialization;
+using MongoDB.Bson;
 
 namespace Shelterprojekt.Server.Controllers
 {
@@ -19,7 +20,7 @@ namespace Shelterprojekt.Server.Controllers
     [Route("[controller]")]
     public class ShelterController : ControllerBase
     {
-        string url = "shelter_minus.json";
+        string url = "shelter_data.json";
 
         private readonly ILogger<ShelterController> logger;
 
@@ -33,7 +34,24 @@ namespace Shelterprojekt.Server.Controllers
             using (StreamReader r = new StreamReader(url))
             {
                 string json = r.ReadToEnd();
-                List<shelterInfo> items = JsonConvert.DeserializeObject<List<shelterInfo>>(json);
+                dynamic jsonObj = JsonConvert.DeserializeObject(json);
+                List<shelterInfo> items = new();
+                foreach (var obj in jsonObj)
+                {
+                    shelterInfo shelter_1 = new shelterInfo(
+                                                        $"{obj["properties"]["navn"]}",
+                                                        $"{obj["properties"]["cvr_navn"]}",
+                                                        $"{obj["properties"]["handicap"]}",
+                                                        0,
+                                                        5,
+                                                        //System.Convert.ToInt32($"{obj["properties"]["antal_pl"]}"),
+                                                        //System.Convert.ToInt32($"{obj["properties"]["postnr"]}"),
+                                                        $"{obj["properties"]["vejnavn"]}",
+                                                        $"{obj["properties"]["kontakt_ved"]}"
+                                                        );
+                    items.Add(shelter_1);
+                    
+                }   
                 return items;
             }
         }

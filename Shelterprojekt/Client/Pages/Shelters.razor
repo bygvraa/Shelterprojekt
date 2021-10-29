@@ -23,7 +23,6 @@
     </tbody>
 </table>
 @code { private List<shelterInfo> shopping = new List<shelterInfo>();
-            private string newItem;
 
             private shelterInfo[] ShelterList = Array.Empty<shelterInfo>();
 
@@ -31,7 +30,7 @@
 
             protected override async Task OnInitializedAsync()
             {
-                ShelterList = await Http.GetFromJsonAsync<shelterInfo[]>("shelter");
+                ShelterList = await Http.GetFromJsonAsync<shelterInfo[]>("Shelter");
             }
     }
 
