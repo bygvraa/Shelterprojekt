@@ -6,7 +6,7 @@
 
 @if (ShelterList == null)
 {
-    <p><em>Loading...</em></p>
+    <p><em>Indlæser shelters, vent venligst...</em></p>
     <br />
 }
 else
@@ -17,14 +17,18 @@ else
                 <tr>
                     <th>Placering</th>
                     <th>Navn</th>
+                    <th>Beskrivelse</th>
                     <th>Antal pladser</th>
+
                 </tr>
                 @foreach (var shelter in ShelterList)
                 {
                     <tr>
                         <td>@shelter.properties.cvr_navn</td>
                         <td>@shelter.properties.navn</td>
+                        <td>@shelter.properties.beskrivels</td>
                         <td>@shelter.properties.antal_pl</td>
+
                     </tr>
                 }
             </thread>
