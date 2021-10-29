@@ -15,11 +15,13 @@ namespace Shelterprojekt.Shared
 
     }
 
+
     [BsonIgnoreExtraElements]
     public class Properties
     {
         [BsonElement("navn")]
         public string navn { get; set; }
+        public string beskrivels { get; set; }
         public string cvr_navn { get; set; }
         public double? antal_pl { get; set; }
         public double? postnr { get; set; }
