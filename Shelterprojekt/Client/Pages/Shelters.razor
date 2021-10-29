@@ -8,22 +8,36 @@
 
 <table class="table">
     <thead>
+        <link rel="stylesheet" href="StyleSheet.css">
         <tr>
-            <th>Shelter navn</th>
-            <th>Placeholder</th>
+            <th>Navn</th>
+            <th>Kommune</th>
+            <th>Handicap</th>
+            <th>Antal pr.</th>
+            <th>Post nr.</th>
+            <th>Vej navn</th>
+            <th>Kontakt</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var shelter in ShelterList)
         {
-<tr>
-    <td>@shelter.navn</td>
-</tr>}
+        <tr>
+            <td>
+                <button style="background:none; border:none;" onclick="myFunction()">@shelter.navn</button>
+            </td>
+            
+            <td>@shelter.cvr_navn</td>
+            <td>@shelter.handicap</td>
+            <td>@shelter.antal_pl</td>
+            <td>@shelter.postnr</td>
+            <td>@shelter.vejnavn</td>
+            <td>@shelter.kontakt_ved</td>
+        </tr>}
 
     </tbody>
 </table>
 @code { private List<shelterInfo> shopping = new List<shelterInfo>();
-            private string newItem;
 
             private shelterInfo[] ShelterList = Array.Empty<shelterInfo>();
 
@@ -31,7 +45,7 @@
 
             protected override async Task OnInitializedAsync()
             {
-                ShelterList = await Http.GetFromJsonAsync<shelterInfo[]>("shelter");
+                ShelterList = await Http.GetFromJsonAsync<shelterInfo[]>("Shelter");
             }
     }
 
