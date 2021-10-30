@@ -4,6 +4,8 @@ html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+button.link {background:none; border:none;}
+
 a, .btn-link {
     color: #0366d6;
 }

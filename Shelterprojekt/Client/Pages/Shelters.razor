@@ -8,6 +8,7 @@
 
 <table class="table">
     <thead>
+        <link rel="stylesheet" href="StyleSheet.css">
         <tr>
             <th>Navn</th>
             <th>Kommune</th>
@@ -22,7 +23,10 @@
         @foreach (var shelter in ShelterList)
         {
         <tr>
-            <td>@shelter.navn</td>
+            <td>
+                <button style="background:none; border:none;" onclick="myFunction()">@shelter.navn</button>
+            </td>
+            
             <td>@shelter.cvr_navn</td>
             <td>@shelter.handicap</td>
             <td>@shelter.antal_pl</td>
