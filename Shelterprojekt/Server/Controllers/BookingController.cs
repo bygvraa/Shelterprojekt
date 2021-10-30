@@ -17,7 +17,7 @@ namespace Shelterprojekt.Server.Controllers
         [Route("api/booking/index")]
         public async Task<IEnumerable<Booking>> Index()
         {
-            return await service.GetBookingsAsync();
+            return await service.GetAllBookingsAsync();
         }
 
         [HttpPost]
@@ -48,11 +48,5 @@ namespace Shelterprojekt.Server.Controllers
             await service.DeleteBookingAsync(id);
         }
 
-        [HttpGet]
-        [Route("api/booking/getbookings")]
-        public async Task<List<Booking>> GetBookings()
-        {
-            return await service.GetShelterBookingsAsync();
-        }
     }
 }
