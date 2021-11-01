@@ -11,44 +11,141 @@
 }
 else
 {
-    <div class="col-md-8">
-        <table class="table table-striped table-bordered">
-            <thread>
-                <tr>
-                    <th>Placering</th>
-                    <th>Navn</th>
-                    <th>Beskrivelse</th>
-                    <th>Antal pladser</th>
+<div class="col-md-8">
+    @*<div class="category" style="clear: both; background-color: #6f9cb2; height: 20px; padding-left: 10px; padding-right: 10px; padding-top: 4px; padding-bottom: 4px; display: block; text-align: left; margin-bottom: 4px;">
+        Shelters</div>*@
+    <table style="width: 100%; height: 100px; margin-bottom: 6px; display: table;">
+        <tbody>
+            <tr>
+                <td>
+                    @foreach (var shelter in ShelterList)
+                    {
+                        <table style="width: 100%; height: 100px; margin-bottom: 6px; display: table;">
+                            <tbody style="display: table-row-group; vertical-align: middle; border-color: inherit; border-collapse: separate; text-indent: initial; border-spacing: 2px;">
+                                <tr style="height:80px; display: table-row; vertical-align: inherit; border-color: inherit;">
 
-                </tr>
-                @foreach (var shelter in ShelterList)
-                {
-                    <tr>
-                        <td>@shelter.properties.cvr_navn</td>
-                        <td>@shelter.properties.navn</td>
-                        <td>@shelter.properties.beskrivels</td>
-                        <td>@shelter.properties.antal_pl</td>
+                                    <td style="margin-right:10px;height:80px;">
+                                    </td>
 
-                    </tr>
-                }
-            </thread>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
+                                    <td valign="top" style="background-color: #D4E7EF; height: 60px; padding-left: 10px; padding-top: 4px; display: table-cell;">
+                                        <div style="font-weight: bold; font-size: 14px; margin-bottom: 3px; display: block;">
+                                            @shelter.properties.navn</div>
+                                        <div style="height:40px; overflow: hidden; display: block;">
+                                            <div style="display: block;">@shelter.properties.beskrivels</div>
+                                        </div>
+
+                                    </td>
+                                    <td align="right" valign="middle" style="padding-right:10px;background-color: #D4E7EF">
+                                        <button class="btn btn-info" style="width: 120px" @onclick="@(async () => await AddBooking(shelter.Id, shelter.properties.navn))">Book shelter</button>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    }
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+    if (isAdd)
+    {
+        <EditForm Model="@booking" OnSubmit="@(async () => await SaveBooking())">
+            <div class="modal" tabindex="-1" style="display:block" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">@ModalTitle</h3>
+                            <button type="button" class="close" @onclick="@this.CloseModal">
+                                <span aria-hidden="true">x</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+
+                                    <label for="dato">
+                                        Dato
+                                        <InputDate @bind-Value="@booking.dato"
+                                                   DisplayName="Dato"
+                                                   ParsingErrorMessage="The {0} field has an incorrect date value." />
+                                    </label>
+
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" >Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </EditForm>
+    }
 }
 
 @code {
+
+    protected string ModalTitle { get; set; }
+
+    protected List<Booking> BookingList;
     protected List<Shelter> ShelterList;
 
+    protected Booking booking = new() { dato = DateTime.UtcNow };
+
+    protected string shelterid;
+
+    protected Boolean isDelete = false;
+    protected Boolean isAdd = false;
+
+
+    protected async Task GetBookings()
+    {
+        BookingList = await Http.GetJsonAsync<List<Booking>>("api/booking/index");
+    }
 
     protected async Task GetShelters()
     {
         ShelterList = await Http.GetJsonAsync<List<Shelter>>("api/shelter/index");
     }
 
+
+    protected async Task AddBooking(string id, string navn)
+    {
+        booking = new() { dato = DateTime.UtcNow };
+        this.ModalTitle = "Book " + navn;
+        this.isAdd = true;
+        await GetBookings().ConfigureAwait(false);
+
+        this.@booking.shelterId = id;
+        this.@booking.shelterNavn = navn;
+    }
+
+    protected async Task SaveBooking()
+    {
+        if (booking.Id != null)
+        {
+            await Http.SendJsonAsync(HttpMethod.Put, "api/booking/edit", booking);
+        }
+        else
+        {
+            await Http.SendJsonAsync(HttpMethod.Post, "/api/booking/create", booking);
+        }
+        await GetBookings();
+    }
+
+
+    protected void CloseModal()
+    {
+        this.isAdd = false;
+        this.isDelete = false;
+    }
+
+
     protected override async Task OnInitializedAsync()
     {
+        await GetBookings();
         await GetShelters();
     }
 
