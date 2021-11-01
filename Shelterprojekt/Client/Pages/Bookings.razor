@@ -32,8 +32,8 @@ else
                     <td>@booking.shelterNavn</td>
                     <td>@booking.dato</td>
                     <td>
-                        <button class="btn btn-info" @onclick="@(async () => await EditProduct(@booking.shelterNavn))">Edit</button>
-                        <button class="btn btn-danger" @onclick="@(async () => await DeleteConfirmation(booking.shelterNavn))">Delete</button>
+                        <button class="btn btn-info" @onclick="@(async () => await EditBooking(@booking.Id))">Edit</button>
+                        <button class="btn btn-danger" @onclick="@(async () => await DeleteConfirmation(booking.Id))">Delete</button>
                     </td>
                 </tr>
             }
@@ -117,6 +117,7 @@ else
     protected Boolean isDelete = false;
     protected Boolean isAdd = false;
 
+
     protected async Task GetBookings()
     {
         BookingList = await Http.GetJsonAsync<List<Booking>>("api/booking/index");
@@ -136,12 +137,12 @@ else
         await GetBookings().ConfigureAwait(false);
     }
 
-    protected async Task EditProduct(string id)
+    protected async Task EditBooking(string id)
     {
         booking = await Http.GetJsonAsync<Booking>("api/booking/details/" + id);
         this.ModalTitle = "Edit Booking";
         this.isAdd = true;
-        await GetShelters().ConfigureAwait(false);
+        await GetBookings().ConfigureAwait(false);
     }
 
     protected async Task SaveBooking()

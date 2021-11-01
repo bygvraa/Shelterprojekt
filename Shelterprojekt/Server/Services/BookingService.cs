@@ -11,7 +11,8 @@ namespace Shelterprojekt.Server.Services
     {
         MainDbContext _dbContext = new MainDbContext();
 
-        public async Task<List<Booking>> GetBookingsAsync()
+        // GET     - hent listen over alle bookings
+        public async Task<List<Booking>> GetAllBookingsAsync()
         {
             try
             {
@@ -23,18 +24,7 @@ namespace Shelterprojekt.Server.Services
             }
         }
 
-        public async Task CreateBookingAsync(Booking booking)
-        {
-            try
-            {
-                await _dbContext.BookingCollection.InsertOneAsync(booking);
-            }
-            catch
-            {
-                throw;
-            }
-        }
-
+        // GET     - find specifik booking
         public async Task<Booking> GetBookingByIdAsync(string id)
         {
             try
@@ -48,6 +38,20 @@ namespace Shelterprojekt.Server.Services
             }
         }
 
+        // CREATE  - lav en ny booking
+        public async Task CreateBookingAsync(Booking booking)
+        {
+            try
+            {
+                await _dbContext.BookingCollection.InsertOneAsync(booking);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        // UPDATE  - opdater en eksisterende booking
         public async Task UpdateBookingAsync(Booking booking)
         {
             try
@@ -60,6 +64,7 @@ namespace Shelterprojekt.Server.Services
             }
         }
 
+        // DELETE  - slet en booking
         public async Task DeleteBookingAsync(string id)
         {
             try
@@ -73,17 +78,6 @@ namespace Shelterprojekt.Server.Services
             }
         }
 
-        public async Task<List<Booking>> GetShelterBookingsAsync()
-        {
-            try
-            {
-                return await _dbContext.BookingCollection.Find(_ => true).ToListAsync().ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
     }
+
 }

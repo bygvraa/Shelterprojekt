@@ -11,6 +11,7 @@ namespace Shelterprojekt.Server.Services
     {
         MainDbContext _dbContext = new MainDbContext();
 
+        // Hent listen over shelters
         public async Task<List<Shelter>> GetSheltersAsync()
         {
             try
