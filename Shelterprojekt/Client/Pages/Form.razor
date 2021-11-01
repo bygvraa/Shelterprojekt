@@ -1,0 +1,79 @@
+﻿@page "/form"
+@using Shelterprojekt.Shared.Models
+@inject HttpClient Http
+
+@if (BookingList == null)
+{
+    <p><em>Indlæser form...</em></p>
+    <br />
+}
+else
+{
+<EditForm Model="@booking" OnSubmit="@SaveBooking">
+    <div class="form-group">
+
+        <label for="shelter">
+            Shelter
+            <InputSelect @bind-Value="@booking.shelterId">
+                <option value="">--- Vælg shelter ---</option>
+                @foreach (var shelter in this.ShelterList)
+                {
+                    <option value="@shelter.Id">@shelter.properties.navn</option>
+                }
+            </InputSelect>
+        </label>
+
+        <label for="dato">
+            Dato
+            <InputDate @bind-Value="@booking.dato"
+                       DisplayName="Dato"
+                       ParsingErrorMessage="The {0} field has an incorrect date value." />
+        </label>
+
+    </div>
+    <button type="submit">Submit</button>
+</EditForm>
+}
+
+@code {
+
+    protected List<Booking> BookingList;
+    protected List<Shelter> ShelterList;
+
+    protected Booking booking = new() { dato = DateTime.UtcNow };
+
+
+    protected async Task GetBookings()
+    {
+        BookingList = await Http.GetJsonAsync<List<Booking>>("api/booking/index");
+    }
+
+    protected async Task GetShelters()
+    {
+        ShelterList = await Http.GetJsonAsync<List<Shelter>>("api/shelter/index");
+    }
+
+
+    protected async Task SaveBooking()
+    {
+        if (booking.Id != null)
+        {
+            await Http.SendJsonAsync(HttpMethod.Put, "api/booking/edit", booking);
+        }
+        else
+        {
+            await Http.SendJsonAsync(HttpMethod.Post, "/api/booking/create", booking);
+        }
+        await GetBookings();
+    }
+
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetBookings();
+        await GetShelters();
+    }
+
+}
