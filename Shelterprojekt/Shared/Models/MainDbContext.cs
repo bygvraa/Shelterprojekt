@@ -10,8 +10,7 @@ namespace Shelterprojekt.Shared.Models
 
         public MainDbContext()
         {
-            
-            // Laver en MongoDB Atlas-client
+            // Opretter en MongoDB-client med forbindelse til MongoDB Atlas
             var client = new MongoClient("mongodb+srv://admindb:6!bWGg_i62ugLEJ@cluster0.zvgfl.mongodb.net/shelterdb?retryWrites=true&w=majority");
 
             // Henter shelter-databasen fra client
@@ -32,7 +31,7 @@ namespace Shelterprojekt.Shared.Models
 
 
 
-        // henter bookings fra _mongoDatabase ("shelterdb)
+        // Henter bookings fra _mongoDatabase ("shelterdb")
         public IMongoCollection<Booking> BookingCollection
         {
             get

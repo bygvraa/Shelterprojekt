@@ -9,14 +9,15 @@ namespace Shelterprojekt.Server.Services
 {
     public class BookingService
     {
-        MainDbContext _dbContext = new MainDbContext();
+        MainDbContext _db = new MainDbContext();
+
 
         // GET     - hent listen over alle bookings
-        public async Task<List<Booking>> GetAllBookingsAsync()
+        public async Task<List<Booking>> GetAllBookings()
         {
             try
             {
-                return await _dbContext.BookingCollection.Find(_ => true).ToListAsync().ConfigureAwait(false);
+                return await _db.BookingCollection.Find(_ => true).ToListAsync().ConfigureAwait(false);
             }
             catch 
             {
@@ -25,12 +26,12 @@ namespace Shelterprojekt.Server.Services
         }
 
         // GET     - find specifik booking
-        public async Task<Booking> GetBookingByIdAsync(string id)
+        public async Task<Booking> GetBookingById(string id)
         {
             try
             {
                 FilterDefinition<Booking> bookingFilter = Builders<Booking>.Filter.Eq("Id", id);
-                return await _dbContext.BookingCollection.FindSync(bookingFilter).FirstOrDefaultAsync();
+                return await _db.BookingCollection.FindSync(bookingFilter).FirstOrDefaultAsync();
             }
             catch
             {
@@ -39,11 +40,11 @@ namespace Shelterprojekt.Server.Services
         }
 
         // CREATE  - lav en ny booking
-        public async Task CreateBookingAsync(Booking booking)
+        public async Task CreateBooking(Booking booking)
         {
             try
             {
-                await _dbContext.BookingCollection.InsertOneAsync(booking);
+                await _db.BookingCollection.InsertOneAsync(booking);
             }
             catch
             {
@@ -52,11 +53,11 @@ namespace Shelterprojekt.Server.Services
         }
 
         // UPDATE  - opdater en eksisterende booking
-        public async Task UpdateBookingAsync(Booking booking)
+        public async Task UpdateBooking(Booking booking)
         {
             try
             {
-                await _dbContext.BookingCollection.ReplaceOneAsync(filter: g => g.Id == booking.Id, replacement: booking);
+                await _db.BookingCollection.ReplaceOneAsync(filter: g => g.Id == booking.Id, replacement: booking);
             }
             catch
             {
@@ -65,12 +66,12 @@ namespace Shelterprojekt.Server.Services
         }
 
         // DELETE  - slet en booking
-        public async Task DeleteBookingAsync(string id)
+        public async Task DeleteBooking(string id)
         {
             try
             {
                 FilterDefinition<Booking> employeeData = Builders<Booking>.Filter.Eq("Id", id);
-                await _dbContext.BookingCollection.DeleteOneAsync(employeeData);
+                await _db.BookingCollection.DeleteOneAsync(employeeData);
             }
             catch
             {

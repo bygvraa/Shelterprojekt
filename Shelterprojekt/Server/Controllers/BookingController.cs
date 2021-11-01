@@ -13,39 +13,40 @@ namespace Shelterprojekt.Server.Controllers
 
         BookingService service = new BookingService();
 
+
         [HttpGet]
         [Route("api/booking/index")]
         public async Task<IEnumerable<Booking>> Index()
         {
-            return await service.GetAllBookingsAsync();
-        }
-
-        [HttpPost]
-        [Route("api/booking/create")]
-        public async Task Create([FromBody] Booking booking)
-        {
-            await service.CreateBookingAsync(booking);
+            return await service.GetAllBookings();
         }
 
         [HttpGet]
         [Route("api/booking/details/{id}")]
         public async Task<Booking> Details(string id)
         {
-            return await service.GetBookingByIdAsync(id);
+            return await service.GetBookingById(id);
+        }
+
+        [HttpPost]
+        [Route("api/booking/create")]
+        public async Task Create([FromBody] Booking booking)
+        {
+            await service.CreateBooking(booking);
         }
 
         [HttpPut]
         [Route("api/booking/edit")]
         public async Task Edit([FromBody] Booking booking)
         {
-            await service.UpdateBookingAsync(booking);
+            await service.UpdateBooking(booking);
         }
 
         [HttpDelete]
         [Route("api/booking/delete/{id}")]
         public async Task Delete(string id)
         {
-            await service.DeleteBookingAsync(id);
+            await service.DeleteBooking(id);
         }
 
     }

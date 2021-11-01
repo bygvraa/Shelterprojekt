@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -13,4 +14,5 @@ namespace Shelterprojekt.Shared.Models
         public string shelterNavn { get; set; }
         public DateTime dato { get; set; }
     }
+
 }
