@@ -22,6 +22,7 @@ else
         <thead>
             <tr>
                 <th>Shelter</th>
+                <th></th>
                 <th>Dato</th>
             </tr>
         </thead>
@@ -29,6 +30,7 @@ else
             @foreach (var booking in BookingList)
             {
                 <tr>
+                    <td>@booking.shelterId</td>
                     <td>@booking.shelterNavn</td>
                     <td>@booking.dato</td>
                     <td>
@@ -54,12 +56,13 @@ else
                         <form>
                             <div class="form-group">
                                 <label asp-for="shelter" class="control-label">Shelter</label>
-                                <select asp-for="shelter" class="form-control" @bind="@booking.shelterId">
+                                <select asp-for="shelter" class="form-control" @bind="@booking.shelterId" >
                                     <option value="">-- Vælg shelter --</option>
-                                    @foreach (var shelter in this.ShelterList)
-                                    {
-                                        <option value="@shelter.Id">@shelter.properties.navn</option>
-                                    }
+                                        @foreach (var shelter in this.ShelterList)
+                                        {
+                                            <option value="@shelter.Id">@shelter.properties.navn</option>
+
+                                        }
                                 </select>
                             </div>
                             <div class="form-group">
@@ -107,13 +110,16 @@ else
 }
 
 @code{
+
     protected string ModalTitle { get; set; }
     protected string SearchString { get; set; }
 
     protected List<Booking> BookingList;
     protected List<Shelter> ShelterList;
 
-    protected Booking booking = new Booking();
+    protected Booking booking = new() { dato = DateTime.UtcNow };
+    protected Shelter shelter = new Shelter();
+
     protected Boolean isDelete = false;
     protected Boolean isAdd = false;
 
@@ -173,6 +179,12 @@ else
         await GetBookings();
     }
 
+    protected async Task FindShelter(string id)
+    {
+        shelter = await Http.GetJsonAsync<Shelter>("api/shelter/details" + id);
+        await GetShelters().ConfigureAwait(false);
+    }
+
     protected void CloseModal()
     {
         this.isAdd = false;
@@ -182,7 +194,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        await GetShelters();
         await GetBookings();
+        await GetShelters();
     }
 }
