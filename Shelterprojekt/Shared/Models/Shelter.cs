@@ -19,13 +19,28 @@ namespace Shelterprojekt.Shared.Models
     [BsonIgnoreExtraElements]
     public class Properties
     {
+        [BsonElement("navn")]
         public string navn { get; set; }
+
+        [BsonElement("beskrivels")]
         public string beskrivels { get; set; }
+        
+        [BsonElement("cvr_navn")]
         public string cvr_navn { get; set; }
+        
+        [BsonElement("antal_pl")]
         public double? antal_pl { get; set; }
+        
+        [BsonElement("postnr")]
         public double? postnr { get; set; }
+        
+        [BsonElement("vejnavn")]
         public string vejnavn { get; set; }
+        
+        [BsonElement("kontakt_ved")]
         public string kontakt_ved { get; set; }
+        
+        [BsonElement("handicap")]
         public string handicap { get; set; }
     }
 }
