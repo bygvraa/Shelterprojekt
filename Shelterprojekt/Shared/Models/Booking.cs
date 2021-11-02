@@ -13,6 +13,7 @@ namespace Shelterprojekt.Shared.Models
         public string shelterId { get; set; }
         public string shelterNavn { get; set; }
         public DateTime dato { get; set; }
+        public string brugerNavn { get; set; }
     }
 
 }

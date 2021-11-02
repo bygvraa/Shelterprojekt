@@ -22,17 +22,17 @@ else
         <thead>
             <tr>
                 <th>Shelter</th>
-                <th></th>
                 <th>Dato</th>
+                <th>Låner</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var booking in BookingList)
             {
                 <tr>
-                    <td>@booking.shelterId</td>
                     <td>@booking.shelterNavn</td>
                     <td>@booking.dato</td>
+                    <td>@booking.brugerNavn</td>
                     <td>
                         <button class="btn btn-info" @onclick="@(async () => await EditBooking(@booking.Id))">Edit</button>
                         <button class="btn btn-danger" @onclick="@(async () => await DeleteConfirmation(booking.Id))">Delete</button>
