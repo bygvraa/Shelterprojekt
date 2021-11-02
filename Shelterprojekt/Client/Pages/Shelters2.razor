@@ -24,15 +24,26 @@ else
                             <tbody style="display: table-row-group; vertical-align: middle; border-color: inherit; border-collapse: separate; text-indent: initial; border-spacing: 2px;">
                                 <tr style="height:80px; display: table-row; vertical-align: inherit; border-color: inherit;">
 
-                                    <td style="margin-right:10px;height:80px;">
-                                    </td>
+                                    @*<td style="margin-right:10px;height:80px; width: 130px">@shelter.properties.cvr_navn</td>*@
 
                                     <td valign="top" style="background-color: #D4E7EF; height: 60px; padding-left: 10px; padding-top: 4px; display: table-cell;">
                                         <div style="font-weight: bold; font-size: 14px; margin-bottom: 3px; display: block;">
                                             @shelter.properties.navn</div>
+
                                         <div style="height:40px; overflow: hidden; display: block;">
                                             <div style="display: block;">@shelter.properties.beskrivels</div>
                                         </div>
+
+                                        <div style="display: inline-table">
+                                            <div id="pladser" style="display:table-cell; padding-right: 20px">
+                                                Antal pladser: @shelter.properties.antal_pl
+                                            </div>
+                                            <div id="handicap" style="display:table-cell">
+                                                @shelter.properties.handicap
+                                            </div>
+
+                                        </div>
+
 
                                     </td>
                                     <td align="right" valign="middle" style="padding-right:10px;background-color: #D4E7EF">
@@ -65,12 +76,15 @@ else
                             <form>
                                 <div class="form-group">
 
-                                    <label for="dato">
-                                        Dato
-                                        <InputDate @bind-Value="@booking.dato"
-                                                   DisplayName="Dato"
-                                                   ParsingErrorMessage="The {0} field has an incorrect date value." />
+                                    <label for="brugernavn" style="width: 300px">
+                                        Brugernavn
                                     </label>
+                                    <InputText @bind-Value="@booking.brugerNavn" />
+
+                                    <label for="dato" style="width: 300px; padding-top: 20px">
+                                        Dato
+                                    </label>
+                                    <InputDate @bind-Value="@booking.dato" />
 
                                 </div>
                             </form>
