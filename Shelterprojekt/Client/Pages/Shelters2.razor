@@ -84,7 +84,8 @@ else
                                     <label for="dato" style="width: 300px; padding-top: 20px">
                                         Dato
                                     </label>
-                                    <InputDate @bind-Value="@booking.dato" />
+                                    <input type="date" id="calendar" min="@dateDisable" @bind="@booking.dato" 
+                                               />
 
                                 </div>
                             </form>
@@ -106,7 +107,7 @@ else
     protected List<Booking> BookingList;
     protected List<Shelter> ShelterList;
 
-    protected Booking booking = new() { dato = DateTime.UtcNow };
+    protected Booking booking = new() { dato = DateTime.Now };
 
     protected string shelterid;
 
@@ -127,7 +128,7 @@ else
 
     protected async Task AddBooking(string id, string navn)
     {
-        booking = new() { dato = DateTime.UtcNow };
+        booking = new() { dato = DateTime.Now };
         this.ModalTitle = "Book " + navn;
         this.isAdd = true;
         await GetBookings().ConfigureAwait(false);
@@ -135,6 +136,7 @@ else
         this.@booking.shelterId = id;
         this.@booking.shelterNavn = navn;
     }
+
 
     protected async Task SaveBooking()
     {
@@ -162,5 +164,10 @@ else
         await GetBookings();
         await GetShelters();
     }
+
+
+    string dateDisable = DateTime.Now.ToString("yyyy-MM-dd");
+
+
 
 }
