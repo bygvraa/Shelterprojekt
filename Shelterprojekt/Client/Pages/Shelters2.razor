@@ -1,5 +1,6 @@
 ﻿@page "/shelters2"
 @using Shelterprojekt.Shared.Models
+@using Shelterprojekt.Shared.Validation
 @inject HttpClient Http
 
 <h3>Shelters</h3>
@@ -8,12 +9,12 @@
 {
     <p><em>Indlæser shelters, vent venligst...</em></p>
     <br />
+
 }
 else
 {
 <div class="col-md-8">
-    @*<div class="category" style="clear: both; background-color: #6f9cb2; height: 20px; padding-left: 10px; padding-right: 10px; padding-top: 4px; padding-bottom: 4px; display: block; text-align: left; margin-bottom: 4px;">
-        Shelters</div>*@
+
     <table style="width: 100%; height: 100px; margin-bottom: 6px; display: table;">
         <tbody>
             <tr>
@@ -24,11 +25,10 @@ else
                             <tbody style="display: table-row-group; vertical-align: middle; border-color: inherit; border-collapse: separate; text-indent: initial; border-spacing: 2px;">
                                 <tr style="height:80px; display: table-row; vertical-align: inherit; border-color: inherit;">
 
-                                    @*<td style="margin-right:10px;height:80px; width: 130px">@shelter.properties.cvr_navn</td>*@
-
                                     <td valign="top" style="background-color: #D4E7EF; height: 60px; padding-left: 10px; padding-top: 4px; display: table-cell;">
                                         <div style="font-weight: bold; font-size: 14px; margin-bottom: 3px; display: block;">
-                                            @shelter.properties.navn</div>
+                                            @shelter.properties.navn
+                                        </div>
 
                                         <div style="height:40px; overflow: hidden; display: block;">
                                             <div style="display: block;">@shelter.properties.beskrivels</div>
@@ -60,9 +60,13 @@ else
     </table>
 </div>
 
+// Trykkes der på "book shelter"-knappen, ændres "isAdd" til true, og følgende kode køres:
     if (isAdd)
     {
-        <EditForm Model="@booking" OnSubmit="@(async () => await SaveBooking())">
+        <EditForm  EditContext="@editContext" OnValidSubmit="@(async () => await SaveBooking())">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
             <div class="modal" tabindex="-1" style="display:block" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -76,50 +80,74 @@ else
                             <form>
                                 <div class="form-group">
 
+
                                     <label for="brugernavn" style="width: 300px">
                                         Brugernavn
                                     </label>
-                                    <InputText @bind-Value="@booking.brugerNavn" />
+                                        <InputText @bind-Value="@booking.brugerNavn" />
+                                            <ValidationMessage For="@(() => booking.brugerNavn)" />
+
 
                                     <label for="dato" style="width: 300px; padding-top: 20px">
                                         Dato
                                     </label>
-                                    <input type="date" id="calendar" min="@dateDisable" @bind="@booking.dato" 
-                                               />
+                                    <input type="date" min="@dateDisable" 
+                                           @bind-value="@booking.dato"
+                                           @onmouseout="(async () => await CheckBooking(booking.shelterId, booking.dato))"
+                                           @onblur="(async () => await CheckBooking(booking.shelterId, booking.dato))" />
+                                           <ValidationMessage For="@(() => booking.dato)" />
+
+                                    
 
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" >Submit</button>
+                            <button type="submit" class="btn btn-primary" id="submitBtn" disabled="@formInvalid" >Submit</button>
                         </div>
                     </div>
                 </div>
             </div>
         </EditForm>
+
     }
 }
 
 @code {
 
-    protected string ModalTitle { get; set; }
+    // Variabler --------------------------------------------
+    //
 
+    // Variabler, der bruges af kalenderen
+    string dateDisable = DateTime.Now.ToString("yyyy-MM-dd");
+    string dateValue;
+
+
+    // Variabler til at indlæse booking- og shelter-listerne
     protected List<Booking> BookingList;
     protected List<Shelter> ShelterList;
 
     protected Booking booking = new() { dato = DateTime.Now };
 
-    protected string shelterid;
 
-    protected Boolean isDelete = false;
+    // Variabler, der bruges af data/form validation
+    private EditContext editContext;
+    private ValidationMessageStore messageStore;
+    private bool formInvalid = true;
+
+
+    // Variabler, der bruges af modal (pop-up vinduet)
+    protected string ModalTitle { get; set; }
     protected Boolean isAdd = false;
 
+
+    // Metoder ----------------------------------------------
+    //
 
     protected async Task GetBookings()
     {
         BookingList = await Http.GetJsonAsync<List<Booking>>("api/booking/index");
     }
-
     protected async Task GetShelters()
     {
         ShelterList = await Http.GetJsonAsync<List<Shelter>>("api/shelter/index");
@@ -128,15 +156,19 @@ else
 
     protected async Task AddBooking(string id, string navn)
     {
-        booking = new() { dato = DateTime.Now };
+        editContext = new(booking = new() { dato = DateTime.Now });
+        editContext.SetFieldCssClassProvider(new CustomFieldClassProvider());
+        messageStore = new(editContext);
+
+
         this.ModalTitle = "Book " + navn;
         this.isAdd = true;
         await GetBookings().ConfigureAwait(false);
 
         this.@booking.shelterId = id;
         this.@booking.shelterNavn = navn;
-    }
 
+    }
 
     protected async Task SaveBooking()
     {
@@ -151,11 +183,35 @@ else
         await GetBookings();
     }
 
+    protected async Task CheckBooking(string id, DateTime date)
+    {
+        string dateString = date.ToLongDateString();
+
+        // Console.WriteLine(id + ": " + dateString);
+        Console.WriteLine("her: "+ date);
+
+
+        messageStore.Clear();
+
+        if ( await Http.GetJsonAsync<bool>("api/booking/check/" + id + "/" + dateString) == true)
+        {
+            formInvalid = true;
+            messageStore.Add(() => booking.dato, "Booking er ikke mulig på denne dato, vælg venligst en anden");
+        }
+        else
+        {
+            formInvalid = false;
+            dateValue = date.ToString("yyyy-MM-dd");
+
+        }
+
+
+    }
+
 
     protected void CloseModal()
     {
         this.isAdd = false;
-        this.isDelete = false;
     }
 
 
@@ -163,11 +219,8 @@ else
     {
         await GetBookings();
         await GetShelters();
+
     }
-
-
-    string dateDisable = DateTime.Now.ToString("yyyy-MM-dd");
-
 
 
 }
