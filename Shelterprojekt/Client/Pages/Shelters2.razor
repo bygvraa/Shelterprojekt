@@ -181,6 +181,7 @@ else
             await Http.SendJsonAsync(HttpMethod.Post, "/api/booking/create", booking);
         }
         await GetBookings();
+        this.CloseModal();
     }
 
     protected async Task CheckBooking(string id, DateTime date)
@@ -188,7 +189,7 @@ else
         string dateString = date.ToLongDateString();
 
         // Console.WriteLine(id + ": " + dateString);
-        Console.WriteLine("her: "+ date);
+        // Console.WriteLine("her: "+ date);
 
 
         messageStore.Clear();
