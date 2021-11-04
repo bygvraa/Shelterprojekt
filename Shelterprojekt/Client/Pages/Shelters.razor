@@ -43,32 +43,6 @@
     </tbody>
 </table>
 
-@if (isAdd == true)
-{
-    <div class="modal" tabindex="-1" style="display:block" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title">@ModalTitle</h3>
-                    <button type="button" class="close" @onclick="@this.CloseModal">
-                        <span aria-hidden="true">x</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="dato" class="control-label">Dato</label>
-                            <input type="date" for="dato" class="form-control" @bind="@booking.dato" />
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-}
-
-
-
 
 @code{
 
