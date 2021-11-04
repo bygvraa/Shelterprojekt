@@ -30,12 +30,12 @@ else
                                             @shelter.properties.navn
                                         </div>
 
-                                        <div style="height:40px; overflow: hidden; display: block;">
+                                        <div style="height:40px; display: table-cell;">
                                             <div style="display: block;">@shelter.properties.beskrivels</div>
                                         </div>
 
                                         <div style="display: inline-table">
-                                            <div id="pladser" style="display:table-cell; padding-right: 20px">
+                                            <div id="pladser" style="display: table-cell; padding-right: 20px">
                                                 Antal pladser: @shelter.properties.antal_pl
                                             </div>
                                             <div id="handicap" style="display:table-cell">
@@ -139,6 +139,7 @@ else
     // Variabler, der bruges af modal (pop-up vinduet)
     protected string ModalTitle { get; set; }
     protected Boolean isAdd = false;
+
 
 
     // Metoder ----------------------------------------------

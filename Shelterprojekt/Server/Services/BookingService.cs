@@ -45,7 +45,6 @@ namespace Shelterprojekt.Server.Services
         {
             try
             {
-                Console.WriteLine("Service: " + shelterid + ": " + dato);
                 var filter1 = Builders<Booking>.Filter.Eq("shelterId", shelterid);          // filter, der finder bookings for den valgte shelter
                 var filter2 = Builders<Booking>.Filter.Eq("dato", new BsonDateTime(dato));  // filter, der finder bookings der matcher den valgte dato
 
@@ -56,11 +55,11 @@ namespace Shelterprojekt.Server.Services
 
 
                 if (count > 0) {
-                    Console.WriteLine("Service: true");
+                    // Console.WriteLine("Service: true");
                     return true;                                                            // shelteren er booket på den valgte dato
                 }
                 else {
-                    Console.WriteLine("Service: false");
+                    // Console.WriteLine("Service: false");
                     return false;                                                           // shelteren er IKKE booket på den valgte dato
                 }
             }
