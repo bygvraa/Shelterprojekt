@@ -9,7 +9,7 @@ namespace Shelterprojekt.Server.Services
 {
     public class ShelterService
     {
-        MainDbContext _db = new MainDbContext();
+        ShelterDatabaseContext _db = new ShelterDatabaseContext();
 
 
         // Get     - hent listen over alle shelters

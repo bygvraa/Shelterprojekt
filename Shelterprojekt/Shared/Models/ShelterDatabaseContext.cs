@@ -3,12 +3,12 @@ using System;
 
 namespace Shelterprojekt.Shared.Models
 {
-    public class MainDbContext
+    public class ShelterDatabaseContext
     {
         private readonly IMongoDatabase _mongoDatabase;
 
 
-        public MainDbContext()
+        public ShelterDatabaseContext()
         {
             // Opretter en MongoDB-client med forbindelse til MongoDB Atlas
             var client = new MongoClient("mongodb+srv://admindb:6!bWGg_i62ugLEJ@cluster0.zvgfl.mongodb.net/shelterdb?retryWrites=true&w=majority");
