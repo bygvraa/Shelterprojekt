@@ -18,7 +18,11 @@ namespace Shelterprojekt.Server.Services
         {
             try
             {
-                return await _db.BookingCollection.Find(_ => true).ToListAsync().ConfigureAwait(false);
+                return await _db.BookingCollection
+                    .Find(_ => true)
+                    .Sort(Builders<Booking>                                     // Starter en sorterings-søgning
+                        .Sort.Descending("shelterNavn").Ascending("dato"))      // Sorter efter bookingens shelternavn, derefter efter datoen for bookingen
+                    .ToListAsync().ConfigureAwait(false);
             }
             catch 
             {
