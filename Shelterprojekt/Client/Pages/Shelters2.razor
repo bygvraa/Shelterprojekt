@@ -21,11 +21,11 @@ else
                 <td>
                     @foreach (var shelter in ShelterList)
                     {
-                        <table class="new-table">
-                            <tbody style="display: table-row-group; vertical-align: middle; border-color: inherit; border-collapse: separate; text-indent: initial; border-spacing: 2px;">
-                                <tr class="new-table-row">
+                        <table class="shelter-card">
+                            <tbody class="shelter-card-tbody">
+                                <tr class="shelter-card-row">
 
-                                    <td valign="top" style=" height: 60px; padding-left: 10px; padding-top: 4px; display: table-cell;">
+                                    <td class="shelter-card-cell" valign="top">
                                         <div style="font-weight: bold; font-size: 14px; margin-bottom: 3px; display: block;">
                                             @shelter.properties.navn
                                         </div>
@@ -84,27 +84,30 @@ else
                                     <label for="brugernavn" style="width: 300px">
                                         Brugernavn
                                     </label>
-                                        <InputText @bind-Value="@booking.brugerNavn" />
-                                            <ValidationMessage For="@(() => booking.brugerNavn)" />
+                                            <InputText @bind-Value="@booking.brugerNavn" />
+                                        <ValidationMessage For="@(() => booking.brugerNavn)" />
 
 
                                     <label for="dato" style="width: 300px; padding-top: 20px">
                                         Dato
                                     </label>
-                                    <input type="date" min="@dateDisable" 
+                                    <input type="date" min="@dateDisable"
                                            @bind-value="@booking.dato"
                                            @onmouseout="(async () => await CheckBooking(booking.shelterId, booking.dato))"
                                            @onblur="(async () => await CheckBooking(booking.shelterId, booking.dato))" />
-                                           <ValidationMessage For="@(() => booking.dato)" />
-
-                                    
+                                        <ValidationMessage For="@(() => booking.dato)" />
 
                                 </div>
                             </form>
                         </div>
+
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" id="submitBtn" disabled="@formInvalid" >Submit</button>
+                            <p valigh="left" style="@messageStyles">
+                                @message
+                            </p>
+                            <button type="submit" class="btn btn-primary" id="submitBtn" disabled="@formInvalid">Submit</button>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -134,6 +137,9 @@ else
     private EditContext editContext;
     private ValidationMessageStore messageStore;
     private bool formInvalid = true;
+
+    private string message;
+    private string messageStyles = "visibility:hidden";
 
 
     // Variabler, der bruges af modal (pop-up vinduet)
@@ -182,7 +188,13 @@ else
             await Http.SendJsonAsync(HttpMethod.Post, "/api/booking/create", booking);
         }
         await GetBookings();
-        this.CloseModal();
+
+        //this.CloseModal();
+        formInvalid = true;
+
+        messageStyles = "color:green";
+        message = "Booking af shelter er nu gennemført";
+
     }
 
     protected async Task CheckBooking(string id, DateTime date)
@@ -194,6 +206,7 @@ else
 
 
         messageStore.Clear();
+        CloseMessage();
 
         if ( await Http.GetJsonAsync<bool>("api/booking/check/" + id + "/" + dateString) == true)
         {
@@ -214,8 +227,13 @@ else
     protected void CloseModal()
     {
         this.isAdd = false;
+        CloseMessage();
     }
 
+    protected void CloseMessage()
+    {
+        messageStyles = "visibility:hidden";
+    }
 
     protected override async Task OnInitializedAsync()
     {
