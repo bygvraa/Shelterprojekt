@@ -1,14 +1,8 @@
-﻿@page "/shelters"
-@using Shelterprojekt.Client.Shared
-@inject HttpClient Http
-@using Shelterprojekt.Client.Pages
+﻿@page "/sheltersLocal"
 @using Shelterprojekt.Shared.Models
-@using System.Diagnostics.CodeAnalysis;
-@using System.Globalization;
-@using System.Runtime.Serialization;
+@inject HttpClient Http
 
 <h1>Shelters</h1>
-
 <br />
 
 <table class="table">
@@ -46,14 +40,14 @@
 
 @code{
 
-    private List<shelterInfo> shopping = new List<shelterInfo>();
+    private List<ShelterLocal> shopping = new List<ShelterLocal>();
 
-    private shelterInfo[] ShelterList = Array.Empty<shelterInfo>();
+    private ShelterLocal[] ShelterList = Array.Empty<ShelterLocal>();
 
 
     protected override async Task OnInitializedAsync()
     {
-        ShelterList = await Http.GetFromJsonAsync<shelterInfo[]>("Shelter");
+        ShelterList = await Http.GetFromJsonAsync<ShelterLocal[]>("ShelterLocal");
     }
 
     protected string ModalTitle { get; set; }
