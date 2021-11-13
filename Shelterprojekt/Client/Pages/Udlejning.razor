@@ -3,7 +3,7 @@
 @using Shelterprojekt.Shared.Validation
 @inject HttpClient Http
 
-<h1>Shelters</h1>
+<h1>Shelterudlejning</h1>
 <br />
 
 @if (ShelterList == null)
@@ -20,7 +20,7 @@ else
         <tbody>
             <tr>
                 <td>
-                    @foreach (var shelter in ShelterList)
+                    @foreach (var Shelter in ShelterList)
                     {
                         <table class="shelter-card">
                             <tbody class="shelter-card-tbody">
@@ -28,21 +28,21 @@ else
 
                                     <td class="shelter-card-cell" valign="top">
                                         <div style="font-weight: bold; font-size: 14px; margin-bottom: 3px; display: block;">
-                                            @shelter.properties.navn
+                                            @Shelter.Properties.Navn
                                         </div>
 
                                         <div style="height:40px; display: table-cell;">
                                             <div style="display: block;">
-                                                @shelter.properties.beskrivels
+                                                @Shelter.Properties.Beskrivelse
                                             </div>
                                         </div>
 
                                         <div style="display: inline-table">
                                             <div id="pladser" style="display: table-cell; padding-right: 20px">
-                                                Antal pladser: @shelter.properties.antal_pl
+                                                Antal pladser: @Shelter.Properties.AntalPl
                                             </div>
                                             <div id="handicap" style="display:table-cell">
-                                                @shelter.properties.handicap
+                                                @Shelter.Properties.Handicap
                                             </div>
 
                                         </div>
@@ -50,7 +50,7 @@ else
 
                                     </td>
                                     <td align="right" valign="middle" style="padding-right: 10px;">
-                                        <button class="btn btn-info" style="width: 120px" @onclick="@(async () => await AddBooking(shelter.Id, shelter.properties.navn))">
+                                        <button class="btn btn-info" style="width: 120px" @onclick="@(async () => await AddBooking(Shelter.Id, Shelter.Properties.Navn))">
                                             Book shelter
                                         </button>
                                     </td>

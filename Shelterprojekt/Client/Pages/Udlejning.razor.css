@@ -1,5 +1,8 @@
 ﻿
-button.link {background:none; border:none;}
+button.link {
+    background: none;
+    border: none;
+}
 
 .shelter-card {
     width: 100%;
