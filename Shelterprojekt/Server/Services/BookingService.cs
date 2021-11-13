@@ -1,10 +1,10 @@
 ﻿using Shelterprojekt.Shared.Models;
 using MongoDB.Driver;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MongoDB.Bson;
 
 namespace Shelterprojekt.Server.Services
 {
@@ -104,8 +104,8 @@ namespace Shelterprojekt.Server.Services
         {
             try
             {
-                FilterDefinition<Booking> employeeData = Builders<Booking>.Filter.Eq("Id", id);
-                await _db.BookingCollection.DeleteOneAsync(employeeData);
+                FilterDefinition<Booking> booking = Builders<Booking>.Filter.Eq("Id", id);
+                await _db.BookingCollection.DeleteOneAsync(booking);
             }
             catch
             {
