@@ -3,7 +3,8 @@
 @using Shelterprojekt.Shared.Validation
 @inject HttpClient Http
 
-<h3>Shelters</h3>
+<h1>Shelters</h1>
+<br />
 
 @if (ShelterList == null)
 {
@@ -31,7 +32,9 @@ else
                                         </div>
 
                                         <div style="height:40px; display: table-cell;">
-                                            <div style="display: block;">@shelter.properties.beskrivels</div>
+                                            <div style="display: block;">
+                                                @shelter.properties.beskrivels
+                                            </div>
                                         </div>
 
                                         <div style="display: inline-table">
@@ -47,7 +50,9 @@ else
 
                                     </td>
                                     <td align="right" valign="middle" style="padding-right: 10px;">
-                                        <button class="btn btn-info" style="width: 120px" @onclick="@(async () => await AddBooking(shelter.Id, shelter.properties.navn))">Book shelter</button>
+                                        <button class="btn btn-info" style="width: 120px" @onclick="@(async () => await AddBooking(shelter.Id, shelter.properties.navn))">
+                                            Book shelter
+                                        </button>
                                     </td>
 
                                 </tr>
@@ -185,11 +190,10 @@ else
         }
         else
         {
-            await Http.SendJsonAsync(HttpMethod.Post, "/api/booking/create", booking);
+            await Http.SendJsonAsync(HttpMethod.Post, "api/booking/create", booking);
         }
         await GetBookings();
 
-        //this.CloseModal();
         formInvalid = true;
 
         messageStyles = "color:green";
@@ -200,10 +204,6 @@ else
     protected async Task CheckBooking(string id, DateTime date)
     {
         string dateString = date.ToLongDateString();
-
-        // Console.WriteLine(id + ": " + dateString);
-        // Console.WriteLine("her: "+ date);
-
 
         messageStore.Clear();
         CloseMessage();
