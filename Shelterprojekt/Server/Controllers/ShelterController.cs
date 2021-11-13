@@ -1,64 +1,52 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Shelterprojekt.Server.Services;
+using Shelterprojekt.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Shelterprojekt.Client.Shared;
-using Microsoft.AspNetCore.Mvc;
-using System.Net.Http;
-using Microsoft.Extensions.Logging;
-using System.IO;
-using Shelterprojekt.Server;
-using System.Text.Json;
-using Newtonsoft.Json;
-using System.Text.Json.Serialization;
-using MongoDB.Bson;
 
 namespace Shelterprojekt.Server.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class ShelterController : ControllerBase
+    public class ShelterController : Controller
     {
-        string url = "shelter_data.json";
 
-        private readonly ILogger<ShelterController> logger;
+        ShelterService service = new ShelterService();
 
-        public ShelterController(ILogger<ShelterController> logger)
+
+        [HttpGet]
+        [Route("api/shelter/index")]
+        public async Task<IEnumerable<Shelter>> Index()
         {
-            this.logger = logger;
-        }
-
-        public List<shelterInfo> LoadJson()
-        {
-            using (StreamReader r = new StreamReader(url))
-            {
-                string json = r.ReadToEnd();
-                dynamic jsonObj = JsonConvert.DeserializeObject(json);
-                List<shelterInfo> items = new();
-                foreach (var obj in jsonObj)
-                {
-                    shelterInfo shelter_1 = new shelterInfo(
-                                                        $"{obj["properties"]["navn"]}",
-                                                        $"{obj["properties"]["cvr_navn"]}",
-                                                        //Convert.ToInt32//
-                                                        $"{obj["properties"]["handicap"]}",
-                                                        $"{obj["properties"]["antal_pl"]}",
-                                                        $"{obj["properties"]["postnr"]}",
-                                                        $"{obj["properties"]["vejnavn"]}",
-                                                        $"{obj["properties"]["kontakt_ved"]}"
-                                                        );
-                    items.Add(shelter_1);
-                    
-                }   
-                return items;
-            }
+            return await service.GetShelters();
         }
 
         [HttpGet]
-        public IEnumerable<shelterInfo> Get()
+        [Route("api/shelter/details/{id}")]
+        public async Task<Shelter> Details(string id)
         {
-            return LoadJson();
+            return await service.GetShelterById(id);
+        }
+
+        [HttpPost]
+        [Route("api/shelter/create")]
+        public async Task Create([FromBody] Shelter shelter)
+        {
+            await service.CreateShelter(shelter);
+        }
+
+        [HttpPut]
+        [Route("api/shelter/edit")]
+        public async Task Edit([FromBody] Shelter shelter)
+        {
+            await service.UpdateShelter(shelter);
+        }
+
+        [HttpDelete]
+        [Route("api/shelter/delete/{id}")]
+        public async Task Delete(string id)
+        {
+            await service.DeleteShelter(id);
         }
 
     }
