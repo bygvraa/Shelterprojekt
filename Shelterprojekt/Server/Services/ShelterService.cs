@@ -1,5 +1,6 @@
 ﻿using Shelterprojekt.Shared.Models;
 using MongoDB.Driver;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,13 +26,53 @@ namespace Shelterprojekt.Server.Services
             }
         }
 
-        // GET     - find specifik booking
+        // GET     - find specifik shelter
         public async Task<Shelter> GetShelterById(string id)
         {
             try
             {
                 FilterDefinition<Shelter> shelterFilter = Builders<Shelter>.Filter.Eq("Id", id);
                 return await _db.ShelterCollection.FindSync(shelterFilter).FirstOrDefaultAsync();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        // CREATE  - lav en ny shelter
+        public async Task CreateShelter(Shelter shelter)
+        {
+            try
+            {
+                await _db.ShelterCollection.InsertOneAsync(shelter);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        // UPDATE  - opdater en eksisterende shelter
+        public async Task UpdateShelter(Shelter shelter)
+        {
+            try
+            {
+                await _db.ShelterCollection.ReplaceOneAsync(filter: g => g.Id == shelter.Id, replacement: shelter);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        // DELETE  - slet en shelter
+        public async Task DeleteShelter(string id)
+        {
+            try
+            {
+                FilterDefinition<Shelter> shelter = Builders<Shelter>.Filter.Eq("Id", id);
+                await _db.ShelterCollection.DeleteOneAsync(shelter);
             }
             catch
             {
