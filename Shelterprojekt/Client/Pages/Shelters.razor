@@ -1,0 +1,198 @@
+﻿@page "/shelters"
+@using Shelterprojekt.Shared.Models
+@inject HttpClient Http
+
+<h1>Shelters</h1>
+<br />
+
+@if (ShelterList == null)
+{
+    <p><em>Indlæser shelters, vent venligst...</em></p>
+    <br />
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr style="white-space: nowrap">
+                <th>Navn</th>
+                <th>Kommune</th>
+                <th>Beskrivelse</th>
+                <th>Antal pr.</th>
+                <th>Handicap</th>
+                <th>Postnr.</th>
+                <th>Vej</th>
+                <th>Kontakt</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var shelter in ShelterList)
+            {
+                <tr>
+                    <td onclick="">
+                        @shelter.Properties.Navn
+                    </td>
+                    <td>@shelter.Properties.Kommune</td>
+                    <td>@shelter.Properties.Beskrivelse</td>
+                    <td>@shelter.Properties.AntalPl</td>
+                    <td>@shelter.Properties.Handicap</td>
+                    <td>@shelter.Properties.Postnr</td>
+                    <td>@shelter.Properties.Vejnavn</td>
+                    <td>@shelter.Properties.Kontaktperson</td>
+                    <td>
+                        <button class="btn btn-info" @onclick="@(async () => await EditShelter(shelter.Id))">
+                            Rediger
+                        </button>
+                        @*
+                            <button class="btn btn-danger" @onclick="@(async () => await DeleteConfirmation(shelter.Id))">
+                                Slet
+                            </button>
+                        *@
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    if (isAdd)
+    {
+        <div class="modal" tabindex="-1" style="display:block" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">@ModalTitle</h3>
+                        <button type="button" class="close" @onclick="@this.CloseModal">
+                            <span aria-hidden="true">x</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="overflow: auto; max-height: 75vh">
+                        <form>
+                            <div class="form-group">
+
+                                <label for="ShelterNavn" class="control-label"> Navn</label>
+                                <input type="text" for="ShelterNavn" class="form-control" @bind="@shelter.Properties.Navn" /><br />
+
+                                <label for="ShelterBeskrivelse" class="control-label"> Beskrivelse</label>
+                                <textarea type="text" for="ShelterBeskrivelse" class="form-control" style="overflow-y: scroll; min-height: calc(1.5em + 0.75rem + 2px);" @bind="@shelter.Properties.Beskrivelse" /><br />
+
+                                <label for="ShelterKommune" class="control-label"> Kommune</label>
+                                <input type="text" for="ShelterKommune" class="form-control" @bind="@shelter.Properties.Kommune" /><br />
+
+                                <label for="ShelterAntalPl" class="control-label"> Antal pr.</label>
+                                <input type="text" for="ShelterAntalPl" class="form-control" @bind="@shelter.Properties.AntalPl" /><br />
+
+                                <label for="ShelterHandicap" class="control-label"> Handicap</label>
+                                <input type="text" for="ShelterHandicap" class="form-control" @bind="@shelter.Properties.Handicap" /><br />
+
+                                <label for="ShelterPostnr" class="control-label"> Postnr.</label>
+                                <input type="text" for="ShelterPostnr" class="form-control" @bind="@shelter.Properties.Postnr" /><br />
+
+                                <label for="ShelterVejnavn" class="control-label"> Vej</label>
+                                <input type="text" for="ShelterVejnavn" class="form-control" @bind="@shelter.Properties.Vejnavn" /><br />
+
+                                <label for="ShelterKontakt" class="control-label"> Kontakt</label>
+                                <textarea type="text" for="ShelterKontakt" class="form-control" style="overflow-y: scroll; min-height: calc(1.5em + 0.75rem + 2px);" @bind="@shelter.Properties.Kontaktperson" /><br />
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-block btn-success" @onclick="@(async () => await SaveShelter())" data-dismiss="modal">
+                            Gem shelter
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+}
+
+
+@code {
+
+    // Variabler --------------------------------------------
+    //
+
+    // Variabler til shelters
+    protected List<Shelter> ShelterList;
+
+    protected Shelter shelter = new Shelter();
+
+
+    // Variabel til modal (pop-up vindue)
+    protected string ModalTitle { get; set; }
+
+    protected Boolean isDelete = false;
+    protected Boolean isAdd = false;
+
+
+    // Metoder ----------------------------------------------
+    //
+
+    protected async Task AddShelter()
+    {
+        shelter = new Shelter();
+        this.ModalTitle = "Tilføj shelter";
+        this.isAdd = true;
+        await GetShelters().ConfigureAwait(false);
+    }
+
+    protected async Task EditShelter(string id)
+    {
+        shelter = await Http.GetJsonAsync<Shelter>("/api/shelter/details/" + id);
+
+        this.ModalTitle = "Rediger Shelter";
+        this.isAdd = true;
+        await GetShelters().ConfigureAwait(false);
+    }
+
+    protected async Task GetShelters()
+    {
+        ShelterList = await Http.GetJsonAsync<List<Shelter>>("/api/shelter/index");
+    }
+
+    protected async Task SaveShelter()
+    {
+        if (shelter.Id != null)
+        {
+            await Http.SendJsonAsync(HttpMethod.Put, "/api/shelter/edit", shelter);
+        }
+        else
+        {
+            await Http.SendJsonAsync(HttpMethod.Post, "/api/shelter/create", shelter);
+        }
+        this.isAdd = false;
+        await GetShelters();
+    }
+
+    protected async Task DeleteConfirmation(string id)
+    {
+        ModalTitle = "Slet Shelter";
+        shelter = await Http.GetJsonAsync<Shelter>("/api/shelter/details/" + id);
+        this.isDelete = true;
+    }
+
+    protected async Task DeleteShelter(string id)
+    {
+        await Http.DeleteAsync("/api/shelter/delete/" + id);
+        this.isDelete = false;
+        await GetShelters();
+    }
+
+
+    protected void CloseModal()
+    {
+        this.isAdd = false;
+        this.isDelete = false;
+    }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetShelters();
+    }
+
+
+}

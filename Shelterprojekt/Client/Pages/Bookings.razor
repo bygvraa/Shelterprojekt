@@ -4,6 +4,7 @@
 
 <h1>Bookings</h1>
 <br />
+
 <div>
     <div style="float:right; margin-bottom:5px">
         <button class="btn btn-primary" @onclick="@AddBooking">Add Booking</button>
@@ -34,8 +35,12 @@ else
                     <td>@booking.dato.ToShortDateString()</td>
                     <td>@booking.brugerNavn</td>
                     <td>
-                        <button class="btn btn-info" @onclick="@(async () => await EditBooking(@booking.Id))">Edit</button>
-                        <button class="btn btn-danger" @onclick="@(async () => await DeleteConfirmation(booking.Id))">Delete</button>
+                        <button class="btn btn-info" @onclick="@(async () => await EditBooking(booking.Id))">
+                            Rediger
+                        </button>
+                        <button class="btn btn-danger" @onclick="@(async () => await DeleteConfirmation(booking.Id))">
+                            Slet
+                        </button>
                     </td>
                 </tr>
             }
@@ -61,18 +66,19 @@ else
                                 </label>
                                 <select asp-for="shelter" class="form-control" @bind="@booking.shelterId">
                                     <option value="">-- Vælg shelter --</option>
-                                    @foreach (var shelter in this.ShelterList)
+                                    @foreach (var Shelter in this.ShelterList)
                                     {
-                                        <option value="@shelter.Id">@shelter.properties.navn</option>
+                                        <option value="@Shelter.Id">@Shelter.Properties.Navn</option>
 
                                     }
                                 </select>
-
+                                <br />
 
                                 <label for="dato" class="control-label">
                                     Dato
                                 </label>
                                 <input type="date" for="dato" class="form-control" @bind="@booking.dato" />
+                                <br />
 
                                 <label for="brugerNavn" class="control-label">
                                     Brugernavn
@@ -84,7 +90,9 @@ else
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-block btn-success" @onclick="@(async () => await SaveBooking())" data-dismiss="modal">Save</button>
+                        <button class="btn btn-block btn-success" @onclick="@(async () => await SaveBooking())" data-dismiss="modal">
+                            Gem booking
+                        </button>
                     </div>
                 </div>
             </div>
@@ -112,8 +120,12 @@ else
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-danger" @onclick="@(async () => await DeleteBooking(booking.Id))" data-dismiss="modal">Confirm</button>
-                        <button class="btn btn-warning" @onclick="@CloseModal">Cancel</button>
+                        <button class="btn btn-danger" @onclick="@(async () => await DeleteBooking(booking.Id))" data-dismiss="modal">
+                            Confirm
+                        </button>
+                        <button class="btn btn-warning" @onclick="@CloseModal">
+                            Cancel
+                        </button>
                     </div>
                 </div>
             </div>
@@ -149,16 +161,16 @@ else
 
     protected async Task AddBooking()
     {
-        booking = new Booking();
-        this.ModalTitle = "Add Booking";
+        booking = new() { dato = DateTime.Now };
+        this.ModalTitle = "Tilføj Booking";
         this.isAdd = true;
         await GetBookings().ConfigureAwait(false);
     }
 
     protected async Task EditBooking(string id)
     {
-        booking = await Http.GetJsonAsync<Booking>("api/booking/details/" + id);
-        this.ModalTitle = "Edit Booking";
+        booking = await Http.GetJsonAsync<Booking>("/api/booking/details/" + id);
+        this.ModalTitle = "Rediger Booking";
         this.isAdd = true;
         await GetBookings().ConfigureAwait(false);
     }
@@ -167,7 +179,7 @@ else
     {
         if (booking.Id != null)
         {
-            await Http.SendJsonAsync(HttpMethod.Put, "api/booking/edit", booking);
+            await Http.SendJsonAsync(HttpMethod.Put, "/api/booking/edit", booking);
         }
         else
         {
@@ -186,16 +198,18 @@ else
 
     protected async Task DeleteBooking(string id)
     {
-        await Http.DeleteAsync("api/booking/delete/" + id);
+        await Http.DeleteAsync("/api/booking/delete/" + id);
         this.isDelete = false;
         await GetBookings();
     }
 
+
     protected async Task FindShelter(string id)
     {
-        shelter = await Http.GetJsonAsync<Shelter>("api/shelter/details" + id);
+        shelter = await Http.GetJsonAsync<Shelter>("/api/shelter/details" + id);
         await GetShelters().ConfigureAwait(false);
     }
+
 
     protected void CloseModal()
     {

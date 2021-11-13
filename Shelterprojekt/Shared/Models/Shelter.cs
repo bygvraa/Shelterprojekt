@@ -11,7 +11,11 @@ namespace Shelterprojekt.Shared.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
 
-        public Properties properties { get; set; }
+        [BsonElement("properties")]
+        public Properties Properties { get; set; }
+
+
+
     }
 
 
@@ -20,27 +24,28 @@ namespace Shelterprojekt.Shared.Models
     public class Properties
     {
         [BsonElement("navn")]
-        public string navn { get; set; }
+        public string Navn { get; set; }
 
         [BsonElement("beskrivels")]
-        public string beskrivels { get; set; }
+        public string Beskrivelse { get; set; }
         
         [BsonElement("cvr_navn")]
-        public string cvr_navn { get; set; }
+        public string Kommune { get; set; }
         
         [BsonElement("antal_pl")]
-        public double? antal_pl { get; set; }
+        public double? AntalPl { get; set; }
         
         [BsonElement("postnr")]
-        public double? postnr { get; set; }
+        public double? Postnr { get; set; }
         
         [BsonElement("vejnavn")]
-        public string vejnavn { get; set; }
+        public string Vejnavn { get; set; }
         
         [BsonElement("kontakt_ved")]
-        public string kontakt_ved { get; set; }
+        public string Kontaktperson { get; set; }
         
         [BsonElement("handicap")]
-        public string handicap { get; set; }
+        public string Handicap { get; set; }
     }
+
 }
