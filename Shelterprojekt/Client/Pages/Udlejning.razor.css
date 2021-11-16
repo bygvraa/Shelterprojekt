@@ -6,6 +6,7 @@ button.link {
 
 .shelter-card {
     width: 100%;
+    min-width: 300px;
     height: 100px;
     color: #2c441f;
     background-color: #eeece6;
@@ -22,6 +23,7 @@ button.link {
 
 .shelter-card-cell-tip {
     width: 40px;
+    min-width: 40px;
     color: #eeece6;
     background-color: #2c441f;
     text-align-last: center;
@@ -60,13 +62,20 @@ button.link {
 }
 
 
+.oi-chevron-right {
+    top: 0px;
+    font-weight: lighter;
+    vertical-align: middle;
+}
+
+
 .shelter-btn-info {
-    width: 120px;
+    width: 100px;
     color: #2c441f;
     background-color: transparent;
     border-color: #2c441f;
 
-    font-weight: bold;
+    font-weight: bolder;
     text-transform: uppercase;
 }
 

@@ -4,7 +4,7 @@
 @inject HttpClient Http
 
 <h1>Shelterudlejning</h1>
-<h4>Liste over tilgængelige sheltere</h4>
+<h5>Liste over tilgængelige sheltere</h5>
 <br />
 
 @if (ShelterList == null)
@@ -40,6 +40,12 @@ else
                                             </div>
                                         </div>
 
+                                        <div align="right" valign="middle" style="padding-right: 10px;">
+                                        <button class="btn shelter-btn-info" @onclick="@(async () => await AddBooking(Shelter.Id, Shelter.Properties.Navn))">
+                                            Book
+                                        </button>
+                                        </div>
+
                                         <div style="display: inline-table">
                                             <div id="pladser" style="display: table-cell; padding-right: 20px">
                                                 Antal pladser: @Shelter.Properties.AntalPl
@@ -52,12 +58,7 @@ else
 
 
                                     </td>
-                                    <td align="right" valign="middle" style="padding-right: 10px;">
-                                        <button class="btn shelter-btn-info" @onclick="@(async () => await AddBooking(Shelter.Id, Shelter.Properties.Navn))">
-                                            Book
-                                            <i class="oi oi-chevron-right"> </i>
-                                        </button>
-                                    </td>
+
 
                                 </tr>
                             </tbody>
