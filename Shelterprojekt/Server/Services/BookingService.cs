@@ -19,12 +19,12 @@ namespace Shelterprojekt.Server.Services
             try
             {
                 // Laver et filter, der kun viser bookings efter dags dato (dvs. den viser ikke bookings fra dage, der er gået)
-                FilterDefinition<Booking> bookingFilter = Builders<Booking>.Filter.Gt("dato", DateTime.Now.ToString("yyyy-MM-dd"));
+                FilterDefinition<Booking> bookingFilter = Builders<Booking>.Filter.Gt("Dato", DateTime.Now.ToString("yyyy-MM-dd"));
 
                 return await _db.BookingCollection
                     .Find(bookingFilter)
                     .Sort(Builders<Booking>                                     // Starter en sorterings-søgning
-                        .Sort.Descending("shelterNavn").Ascending("dato"))      // Sorter efter bookingens shelternavn, derefter efter datoen for bookingen
+                        .Sort.Descending("ShelterNavn").Ascending("Dato"))      // Sorter efter bookingens shelternavn, derefter efter datoen for bookingen
                     .ToListAsync().ConfigureAwait(false);
             }
             catch 
@@ -52,8 +52,8 @@ namespace Shelterprojekt.Server.Services
         {
             try
             {
-                var filter1 = Builders<Booking>.Filter.Eq("shelterId", shelterid);          // filter, der finder bookings for den valgte shelter
-                var filter2 = Builders<Booking>.Filter.Eq("dato", new BsonDateTime(dato));  // filter, der finder bookings der matcher den valgte dato
+                var filter1 = Builders<Booking>.Filter.Eq("ShelterId", shelterid);          // filter, der finder bookings for den valgte shelter
+                var filter2 = Builders<Booking>.Filter.Eq("Dato", new BsonDateTime(dato));  // filter, der finder bookings der matcher den valgte dato
 
 
                 FilterDefinition<Booking> bookingFilter = filter1 & filter2;                // sætter de to filtre sammen til et udtryk
