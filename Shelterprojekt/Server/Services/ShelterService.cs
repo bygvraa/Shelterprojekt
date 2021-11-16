@@ -58,7 +58,20 @@ namespace Shelterprojekt.Server.Services
         {
             try
             {
-                await _db.ShelterCollection.ReplaceOneAsync(filter: g => g.Id == shelter.Id, replacement: shelter);
+                await _db.ShelterCollection.UpdateOneAsync(
+                    Builders<Shelter>.Filter
+                        .Eq(eksShelter => eksShelter.Id, shelter.Id),
+
+                    Builders<Shelter>.Update
+                        .Set(eksShelter => eksShelter.Properties.Navn,          shelter.Properties.Navn)
+                        .Set(eksShelter => eksShelter.Properties.Beskrivelse,   shelter.Properties.Beskrivelse)
+                        .Set(eksShelter => eksShelter.Properties.Kommune,       shelter.Properties.Kommune)
+                        .Set(eksShelter => eksShelter.Properties.AntalPl,       shelter.Properties.AntalPl)
+                        .Set(eksShelter => eksShelter.Properties.Postnr,        shelter.Properties.Postnr)
+                        .Set(eksShelter => eksShelter.Properties.Vejnavn,       shelter.Properties.Vejnavn)
+                        .Set(eksShelter => eksShelter.Properties.Kontaktperson, shelter.Properties.Kontaktperson)
+                        .Set(eksShelter => eksShelter.Properties.Handicap,      shelter.Properties.Handicap)
+                    );
             }
             catch
             {
