@@ -4,6 +4,7 @@
 @inject HttpClient Http
 
 <h1>Shelterudlejning</h1>
+<h4>Liste over tilgængelige sheltere</h4>
 <br />
 
 @if (ShelterList == null)
@@ -14,7 +15,7 @@
 }
 else
 {
-<div class="col-md-8">
+<div class="col-md-8" style="padding-left: initial; padding-right: initial">
 
     <table style="width: 80%; height: 100px; margin-bottom: 6px; display: table;">
         <tbody>
@@ -25,9 +26,11 @@ else
                         <table class="shelter-card">
                             <tbody class="shelter-card-tbody">
                                 <tr class="shelter-card-row">
-
+                                    <td class="shelter-card-cell shelter-card-cell-tip">
+                                        <i class="oi oi-home"></i>
+                                    </td>
                                     <td class="shelter-card-cell" valign="top">
-                                        <div style="font-weight: bold; font-size: 14px; margin-bottom: 3px; display: block;">
+                                        <div class="shelter-card-cell-title">
                                             @Shelter.Properties.Navn
                                         </div>
 
@@ -50,8 +53,9 @@ else
 
                                     </td>
                                     <td align="right" valign="middle" style="padding-right: 10px;">
-                                        <button class="btn btn-info" style="width: 120px" @onclick="@(async () => await AddBooking(Shelter.Id, Shelter.Properties.Navn))">
-                                            Book shelter
+                                        <button class="btn shelter-btn-info" @onclick="@(async () => await AddBooking(Shelter.Id, Shelter.Properties.Navn))">
+                                            Book
+                                            <i class="oi oi-chevron-right"> </i>
                                         </button>
                                     </td>
 
@@ -89,18 +93,18 @@ else
                                     <label for="brugernavn" style="width: 300px">
                                         Brugernavn
                                     </label>
-                                            <InputText @bind-Value="@booking.brugerNavn" />
-                                        <ValidationMessage For="@(() => booking.brugerNavn)" />
+                                            <InputText @bind-Value="@booking.Brugernavn" />
+                                        <ValidationMessage For="@(() => booking.Brugernavn)" />
 
 
                                     <label for="dato" style="width: 300px; padding-top: 20px">
                                         Dato
                                     </label>
                                     <input type="date" min="@dateDisable"
-                                           @bind-value="@booking.dato"
-                                           @onmouseout="(async () => await CheckBooking(booking.shelterId, booking.dato))"
-                                           @onblur="(async () => await CheckBooking(booking.shelterId, booking.dato))" />
-                                        <ValidationMessage For="@(() => booking.dato)" />
+                                           @bind-value="@booking.Dato"
+                                           @onmouseout="(async () => await CheckBooking(booking.ShelterId, booking.Dato))"
+                                           @onblur="(async () => await CheckBooking(booking.ShelterId, booking.Dato))" />
+                                        <ValidationMessage For="@(() => booking.Dato)" />
 
                                 </div>
                             </form>
@@ -135,7 +139,7 @@ else
     protected List<Booking> BookingList;
     protected List<Shelter> ShelterList;
 
-    protected Booking booking = new() { dato = DateTime.Now };
+    protected Booking booking = new() { Dato = DateTime.Now };
 
 
     // Variabler, der bruges af data/form validation
@@ -168,7 +172,7 @@ else
 
     protected async Task AddBooking(string id, string navn)
     {
-        editContext = new(booking = new() { dato = DateTime.Now });
+        editContext = new(booking = new() { Dato = DateTime.Now });
         editContext.SetFieldCssClassProvider(new CustomFieldClassProvider());
         messageStore = new(editContext);
 
@@ -177,8 +181,8 @@ else
         this.isAdd = true;
         await GetBookings().ConfigureAwait(false);
 
-        this.@booking.shelterId = id;
-        this.@booking.shelterNavn = navn;
+        this.@booking.ShelterId = id;
+        this.@booking.ShelterNavn = navn;
 
     }
 
@@ -211,7 +215,7 @@ else
         if ( await Http.GetJsonAsync<bool>("api/booking/check/" + id + "/" + dateString) == true)
         {
             formInvalid = true;
-            messageStore.Add(() => booking.dato, "Booking er ikke mulig på denne dato, vælg venligst en anden");
+            messageStore.Add(() => booking.Dato, "Booking er ikke mulig på denne dato, vælg venligst en anden");
         }
         else
         {
