@@ -144,15 +144,6 @@ else
     {
         shelter = await Http.GetJsonAsync<Shelter>("/api/shelter/details/" + id);
 
-
-        //dynamic koordinater = JsonConvert.DeserializeObject<Enumerable>(shelter.Geometry.Coordinates);
-
-        //Console.WriteLine(shelter.Geometry.Koordinater.Lat);
-        //Console.WriteLine(shelter.Geometry.Koordinater.Long);
-        //Console.WriteLine(koordi);
-
-
-
         this.ModalTitle = "Rediger Shelter";
         this.isAdd = true;
         await GetShelters().ConfigureAwait(false);

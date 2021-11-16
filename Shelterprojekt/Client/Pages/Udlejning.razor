@@ -41,9 +41,9 @@ else
                                         </div>
 
                                         <div align="right" valign="middle" style="padding-right: 10px;">
-                                            @*<button class="btn shelter-btn-info" id="https://www.google.com/maps?q=56.253353678025384,10.305818710995263">
+                                            <button class="btn shelter-btn-info" onclick=" window.open('https://www.google.com/maps?q=@Shelter.Geometry.Koordinater.Lat,@Shelter.Geometry.Koordinater.Long', '_blank')">
                                                 Maps
-                                            </button>*@
+                                            </button>
 
                                             <button class="btn shelter-btn-info" @onclick="@(async () => await AddBooking(Shelter.Id, Shelter.Properties.Navn))">
                                                 Book

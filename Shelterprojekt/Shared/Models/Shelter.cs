@@ -4,7 +4,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Shelterprojekt.Shared.Models
 {
-    [BsonIgnoreExtraElements]       // Ekstra elementer, der ikke specificeres i klassen (f.eks. 'geometry', og 'type') bliver ignoreret, når databasen loades. Kun elementer der eksplicit nævnes ('id' og 'properties') loades.
+    [BsonIgnoreExtraElements]       // Ekstra elementer, der ikke specificeres i klassen (f.eks. 'type') bliver ignoreret, når databasen loades. Kun elementer der eksplicit nævnes ('id' og 'properties') loades.
     public class Shelter
     {
         [BsonId]
@@ -14,8 +14,8 @@ namespace Shelterprojekt.Shared.Models
         [BsonElement("properties")]
         public Properties Properties { get; set; }
 
-        //[BsonElement("geometry")]
-        //public Geometry Geometry { get; set; }
+        [BsonElement("geometry")]
+        public Geometry Geometry { get; set; }
 
     }
 
@@ -47,20 +47,22 @@ namespace Shelterprojekt.Shared.Models
         public string Handicap { get; set; }
     }
 
-    //[BsonIgnoreExtraElements]
-    //public class Geometry
-    //{
-    //    [BsonElement("coordinates")]
-    //    [BsonSerializer(typeof(CustomArraySerializer))]
-    //    public Coordinates Koordinater { get; set; }
-    //}
+    public class Geometry
+    {
+        [BsonElement("type")]
+        public string Type { get; set; }
 
-    //[BsonIgnoreExtraElements]
-    //public class Coordinates
-    //{
-    //    public float Lat { get; set; }
+        [BsonElement("coordinates")]
+        [BsonSerializer(typeof(CustomArraySerializer))]
+        public Coordinates Koordinater { get; set; }
+    }
 
-    //    public float Long { get; set; }
-    //}
+    [BsonIgnoreExtraElements]
+    public class Coordinates
+    {
+        public dynamic Lat { get; set; }
+
+        public dynamic Long { get; set; }
+    }
 
 }
