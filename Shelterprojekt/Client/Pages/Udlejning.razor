@@ -34,16 +34,20 @@ else
                                             @Shelter.Properties.Navn
                                         </div>
 
-                                        <div style="height:40px; display: table-cell;">
+                                        <div style="height:40px; display: table-cell; color: black;">
                                             <div style="display: block;">
                                                 @Shelter.Properties.Beskrivelse
                                             </div>
                                         </div>
 
                                         <div align="right" valign="middle" style="padding-right: 10px;">
-                                        <button class="btn shelter-btn-info" @onclick="@(async () => await AddBooking(Shelter.Id, Shelter.Properties.Navn))">
-                                            Book
-                                        </button>
+                                            @*<button class="btn shelter-btn-info" id="https://www.google.com/maps?q=56.253353678025384,10.305818710995263">
+                                                Maps
+                                            </button>*@
+
+                                            <button class="btn shelter-btn-info" @onclick="@(async () => await AddBooking(Shelter.Id, Shelter.Properties.Navn))">
+                                                Book
+                                            </button>
                                         </div>
 
                                         <div style="display: inline-table">
@@ -79,11 +83,13 @@ else
 
             <div class="modal" tabindex="-1" style="display:block" role="dialog">
                 <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
+                    <div class="modal-content" style="background-color: #f7f7f7">
+                        <div class="modal-header" style="border: none">
                             <h3 class="modal-title">@ModalTitle</h3>
                             <button type="button" class="close" @onclick="@this.CloseModal">
-                                <span aria-hidden="true">x</span>
+                                <span aria-hidden="true" style="font-family: monospace">
+                                    x
+                                </span>
                             </button>
                         </div>
                         <div class="modal-body">
@@ -104,6 +110,7 @@ else
                                     <input type="date" min="@dateDisable"
                                            @bind-value="@booking.Dato"
                                            @onmouseout="(async () => await CheckBooking(booking.ShelterId, booking.Dato))"
+                                           @onmouseover="@(() =>  PrintTime(booking.Dato))"
                                            @onblur="(async () => await CheckBooking(booking.ShelterId, booking.Dato))" />
                                         <ValidationMessage For="@(() => booking.Dato)" />
 
@@ -111,7 +118,7 @@ else
                             </form>
                         </div>
 
-                        <div class="modal-footer">
+                        <div class="modal-footer" style="border: none">
                             <div style="@messageStyles">
                                 @message
                             </div>
@@ -160,6 +167,11 @@ else
 
     // Metoder ----------------------------------------------
     //
+    void PrintTime(DateTime date)
+    {
+        Console.WriteLine(DateTime.Now);
+        Console.WriteLine(date);
+    }
 
     protected async Task GetBookings()
     {
@@ -208,6 +220,7 @@ else
 
     protected async Task CheckBooking(string id, DateTime date)
     {
+        Console.WriteLine(date);
         string dateString = date.ToLongDateString();
 
         messageStore.Clear();
