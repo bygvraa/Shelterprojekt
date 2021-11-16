@@ -31,9 +31,9 @@ else
             @foreach (var booking in BookingList)
             {
                 <tr>
-                    <td>@booking.shelterNavn</td>
-                    <td>@booking.dato.ToShortDateString()</td>
-                    <td>@booking.brugerNavn</td>
+                    <td>@booking.ShelterNavn</td>
+                    <td>@booking.Dato.ToShortDateString()</td>
+                    <td>@booking.Brugernavn</td>
                     <td>
                         <button class="btn btn-info" @onclick="@(async () => await EditBooking(booking.Id))">
                             Rediger
@@ -64,7 +64,7 @@ else
                                 <label asp-for="shelter" class="control-label">
                                     Shelter
                                 </label>
-                                <select asp-for="shelter" class="form-control" @bind="@booking.shelterId">
+                                <select asp-for="shelter" class="form-control" @bind="@booking.ShelterId">
                                     <option value="">-- Vælg shelter --</option>
                                     @foreach (var Shelter in this.ShelterList)
                                     {
@@ -77,13 +77,13 @@ else
                                 <label for="dato" class="control-label">
                                     Dato
                                 </label>
-                                <input type="date" for="dato" class="form-control" @bind="@booking.dato" />
+                                <input type="date" for="dato" class="form-control" @bind="@booking.Dato" />
                                 <br />
 
                                 <label for="brugerNavn" class="control-label">
                                     Brugernavn
                                 </label>
-                                <input type="text" for="brugerNavn" class="form-control" @bind="@booking.brugerNavn" />
+                                <input type="text" for="brugerNavn" class="form-control" @bind="@booking.Brugernavn" />
 
 
                             </div>
@@ -111,11 +111,11 @@ else
                         <table class="table">
                             <tr>
                                 <td>Shelter</td>
-                                <td>@booking.shelterNavn</td>
+                                <td>@booking.ShelterNavn</td>
                             </tr>
                             <tr>
                                 <td>Dato</td>
-                                <td>@booking.dato</td>
+                                <td>@booking.Dato</td>
                             </tr>
                         </table>
                     </div>
@@ -141,7 +141,7 @@ else
     protected List<Booking> BookingList;
     protected List<Shelter> ShelterList;
 
-    protected Booking booking = new() { dato = DateTime.UtcNow };
+    protected Booking booking = new() { Dato = DateTime.UtcNow };
     protected Shelter shelter = new Shelter();
 
     protected Boolean isDelete = false;
@@ -161,7 +161,7 @@ else
 
     protected async Task AddBooking()
     {
-        booking = new() { dato = DateTime.Now };
+        booking = new() { Dato = DateTime.Now };
         this.ModalTitle = "Tilføj Booking";
         this.isAdd = true;
         await GetBookings().ConfigureAwait(false);
