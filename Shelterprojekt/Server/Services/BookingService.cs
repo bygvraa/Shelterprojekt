@@ -18,8 +18,11 @@ namespace Shelterprojekt.Server.Services
         {
             try
             {
+                // Laver et filter, der kun viser bookings efter dags dato (dvs. den viser ikke bookings fra dage, der er gået)
+                FilterDefinition<Booking> bookingFilter = Builders<Booking>.Filter.Gt("dato", DateTime.Now.ToString("yyyy-MM-dd"));
+
                 return await _db.BookingCollection
-                    .Find(_ => true)
+                    .Find(bookingFilter)
                     .Sort(Builders<Booking>                                     // Starter en sorterings-søgning
                         .Sort.Descending("shelterNavn").Ascending("dato"))      // Sorter efter bookingens shelternavn, derefter efter datoen for bookingen
                     .ToListAsync().ConfigureAwait(false);
@@ -59,11 +62,9 @@ namespace Shelterprojekt.Server.Services
 
 
                 if (count > 0) {
-                    // Console.WriteLine("Service: true");
                     return true;                                                            // shelteren er booket på den valgte dato
                 }
                 else {
-                    // Console.WriteLine("Service: false");
                     return false;                                                           // shelteren er IKKE booket på den valgte dato
                 }
             }

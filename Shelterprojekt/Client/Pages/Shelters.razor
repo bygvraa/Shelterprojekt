@@ -1,5 +1,6 @@
 ﻿@page "/shelters"
 @using Shelterprojekt.Shared.Models
+@using Newtonsoft.Json;
 @inject HttpClient Http
 
 <h1>Shelters</h1>
@@ -142,6 +143,15 @@ else
     protected async Task EditShelter(string id)
     {
         shelter = await Http.GetJsonAsync<Shelter>("/api/shelter/details/" + id);
+
+
+        //dynamic koordinater = JsonConvert.DeserializeObject<Enumerable>(shelter.Geometry.Coordinates);
+
+        //Console.WriteLine(shelter.Geometry.Koordinater.Lat);
+        //Console.WriteLine(shelter.Geometry.Koordinater.Long);
+        //Console.WriteLine(koordi);
+
+
 
         this.ModalTitle = "Rediger Shelter";
         this.isAdd = true;

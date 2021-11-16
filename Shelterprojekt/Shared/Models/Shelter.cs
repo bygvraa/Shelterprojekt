@@ -14,11 +14,10 @@ namespace Shelterprojekt.Shared.Models
         [BsonElement("properties")]
         public Properties Properties { get; set; }
 
-
+        //[BsonElement("geometry")]
+        //public Geometry Geometry { get; set; }
 
     }
-
-
 
     [BsonIgnoreExtraElements]
     public class Properties
@@ -47,5 +46,21 @@ namespace Shelterprojekt.Shared.Models
         [BsonElement("handicap")]
         public string Handicap { get; set; }
     }
+
+    //[BsonIgnoreExtraElements]
+    //public class Geometry
+    //{
+    //    [BsonElement("coordinates")]
+    //    [BsonSerializer(typeof(CustomArraySerializer))]
+    //    public Coordinates Koordinater { get; set; }
+    //}
+
+    //[BsonIgnoreExtraElements]
+    //public class Coordinates
+    //{
+    //    public float Lat { get; set; }
+
+    //    public float Long { get; set; }
+    //}
 
 }
