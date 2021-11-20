@@ -1,5 +1,6 @@
 ﻿@page "/bookings"
 @using Shelterprojekt.Shared.Models
+
 @inject HttpClient Http
 
 <h1>Bookings</h1>
@@ -7,7 +8,7 @@
 
 <div>
     <div style="float:right; margin-bottom:5px">
-        <button class="btn btn-primary" @onclick="@AddBooking">Add Booking</button>
+        <button class="btn btn-primary" @onclick="@AddBooking">Tilføj Booking</button>
     </div>
 </div>
 <br />
@@ -27,6 +28,7 @@ else
                 <th>Shelter</th>
                 <th>Dato</th>
                 <th>Låner</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -36,7 +38,7 @@ else
                     <td>@booking.ShelterNavn</td>
                     <td>@booking.Dato.ToShortDateString()</td>
                     <td>@booking.Brugernavn</td>
-                    <td>
+                    <td style="text-align: right">
                         <button class="btn btn-info" @onclick="@(async () => await EditBooking(booking.Id))">
                             Rediger
                         </button>
@@ -50,13 +52,15 @@ else
     </table>
     if (isAdd)
     {
-        <div class="modal" tabindex="-1" style="display:block" role="dialog">
+        <div class="modal modal-new" tabindex="-1" role="dialog">
             <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
+                <div class="modal-content modal-c-new">
+                    <div class="modal-header modal-no-border">
                         <h3 class="modal-title">@ModalTitle</h3>
                         <button type="button" class="close" @onclick="@this.CloseModal">
-                            <span aria-hidden="true">x</span>
+                            <span aria-hidden="true">
+                                🗙
+                            </span>
                         </button>
                     </div>
                     <div class="modal-body">
@@ -66,12 +70,14 @@ else
                                 <label asp-for="shelter" class="control-label">
                                     Shelter
                                 </label>
-                                <select asp-for="shelter" class="form-control" @bind="@booking.ShelterId">
-                                    <option value="">-- Vælg shelter --</option>
+                                <select asp-for="shelter" class="form-control"
+                                        @bind="@booking.ShelterId" >
+                                    <option>-- Vælg shelter --</option>
                                     @foreach (var Shelter in this.ShelterList)
                                     {
-                                        <option value="@Shelter.Id">@Shelter.Properties.Navn</option>
-
+                                        <option value="@Shelter.Id" >
+                                            @Shelter.Properties.Navn
+                                        </option>
                                     }
                                 </select>
                                 <br />
@@ -79,20 +85,23 @@ else
                                 <label for="dato" class="control-label">
                                     Dato
                                 </label>
-                                <input type="date" for="dato" class="form-control" @bind="@booking.Dato" />
+                                <input type="date" for="dato" class="form-control"
+                                       @bind-value="@booking.Dato" />
                                 <br />
 
                                 <label for="brugerNavn" class="control-label">
                                     Brugernavn
                                 </label>
-                                <input type="text" for="brugerNavn" class="form-control" @bind="@booking.Brugernavn" />
+                                <input type="text" for="brugerNavn" class="form-control" 
+                                       @bind-value="@booking.Brugernavn" />
 
 
                             </div>
                         </form>
                     </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-block btn-success" @onclick="@(async () => await SaveBooking())" data-dismiss="modal">
+                    <div class="modal-footer modal-no-border">
+                        <button class="btn btn-block btn-success" data-dismiss="modal"
+                                @onclick="@(async () => await SaveBooking())" >
                             Gem booking
                         </button>
                     </div>
@@ -102,14 +111,16 @@ else
     }
     if (isDelete == true)
     {
-        <div class="modal" tabindex="-1" style="display:block" role="dialog">
+        <div class="modal modal-new" tabindex="-1" role="dialog">
             <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
+                <div class="modal-content modal-c-new">
+                    <div class="modal-header modal-no-border">
                         <h3 class="modal-title">@ModalTitle</h3>
                     </div>
                     <div class="modal-body">
-                        <h4>Do you confirm delete this booking?</h4>
+                        <h5 style=" margin-top: -10px; margin-bottom: 25px; margin-left: 2px;">
+                            Bekræft fjernelse af booking?
+                        </h5>
                         <table class="table">
                             <tr>
                                 <td>Shelter</td>
@@ -117,16 +128,16 @@ else
                             </tr>
                             <tr>
                                 <td>Dato</td>
-                                <td>@booking.Dato</td>
+                                <td>@booking.Dato.ToShortDateString()</td>
                             </tr>
                         </table>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer modal-no-border">
                         <button class="btn btn-danger" @onclick="@(async () => await DeleteBooking(booking.Id))" data-dismiss="modal">
-                            Confirm
+                            Bekræft
                         </button>
                         <button class="btn btn-warning" @onclick="@CloseModal">
-                            Cancel
+                            Annuller
                         </button>
                     </div>
                 </div>
@@ -135,10 +146,11 @@ else
     }
 }
 
+
 @code{
 
-    protected string ModalTitle { get; set; }
-    protected string SearchString { get; set; }
+    // Variabler --------------------------------------------
+    //
 
     protected List<Booking> BookingList;
     protected List<Shelter> ShelterList;
@@ -146,15 +158,18 @@ else
     protected Booking booking = new() { Dato = DateTime.UtcNow };
     protected Shelter shelter = new Shelter();
 
+    protected string ModalTitle { get; set; }
     protected Boolean isDelete = false;
     protected Boolean isAdd = false;
 
+
+    // Metoder ----------------------------------------------
+    //
 
     protected async Task GetBookings()
     {
         BookingList = await Http.GetJsonAsync<List<Booking>>("api/booking/index");
     }
-
     protected async Task GetShelters()
     {
         ShelterList = await Http.GetJsonAsync<List<Shelter>>("api/shelter/index");
@@ -193,7 +208,7 @@ else
 
     protected async Task DeleteConfirmation(string id)
     {
-        ModalTitle = "Delete Booking";
+        ModalTitle = "Fjern Booking";
         booking = await Http.GetJsonAsync<Booking>("/api/booking/details/" + id);
         this.isDelete = true;
     }
@@ -219,10 +234,10 @@ else
         this.isDelete = false;
     }
 
-
     protected override async Task OnInitializedAsync()
     {
         await GetBookings();
         await GetShelters();
     }
+
 }

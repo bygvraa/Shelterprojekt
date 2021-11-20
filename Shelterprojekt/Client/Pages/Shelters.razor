@@ -1,6 +1,6 @@
 ﻿@page "/shelters"
 @using Shelterprojekt.Shared.Models
-@using Newtonsoft.Json;
+
 @inject HttpClient Http
 
 <h1>Shelters</h1>
@@ -60,16 +60,18 @@ else
     </table>
     if (isAdd)
     {
-        <div class="modal" tabindex="-1" style="display:block" role="dialog">
+        <div class="modal modal-new" tabindex="-1" role="dialog">
             <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
+                <div class="modal-content modal-c-new">
+                    <div class="modal-header modal-no-border">
                         <h3 class="modal-title">@ModalTitle</h3>
                         <button type="button" class="close" @onclick="@this.CloseModal">
-                            <span aria-hidden="true">x</span>
+                            <span aria-hidden="true">
+                                🗙
+                            </span>
                         </button>
                     </div>
-                    <div class="modal-body" style="overflow: auto; max-height: 75vh">
+                    <div class="modal-body modal-b-new">
                         <form>
                             <div class="form-group">
 
@@ -100,7 +102,7 @@ else
                             </div>
                         </form>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer modal-no-border">
                         <button class="btn btn-block btn-success" @onclick="@(async () => await SaveShelter())" data-dismiss="modal">
                             Gem shelter
                         </button>
@@ -134,6 +136,12 @@ else
     // Metoder ----------------------------------------------
     //
 
+    protected async Task GetShelters()
+    {
+        ShelterList = await Http.GetJsonAsync<List<Shelter>>("/api/shelter/index");
+    }
+
+
     protected async Task AddShelter()
     {
         shelter = new Shelter();
@@ -149,11 +157,6 @@ else
         this.ModalTitle = "Rediger Shelter";
         this.isAdd = true;
         await GetShelters().ConfigureAwait(false);
-    }
-
-    protected async Task GetShelters()
-    {
-        ShelterList = await Http.GetJsonAsync<List<Shelter>>("/api/shelter/index");
     }
 
     protected async Task SaveShelter()
@@ -191,11 +194,9 @@ else
         this.isDelete = false;
     }
 
-
     protected override async Task OnInitializedAsync()
     {
         await GetShelters();
     }
-
 
 }
