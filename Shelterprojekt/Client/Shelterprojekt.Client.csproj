@@ -9,6 +9,7 @@
     <Content Remove="Pages\Bestil.razor" />
     <Content Remove="Pages\Counter.razor" />
     <Content Remove="Pages\FetchData.razor" />
+    <Content Remove="Shared\SurveyPrompt.razor" />
   </ItemGroup>
 
   <ItemGroup>
