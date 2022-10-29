@@ -4,23 +4,6 @@ html, body {
     font-family: sans-serif, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif 'Helvetica Neue', Helvetica, Arial;
 }
 
-.modal-new {
-    display: block;
-}
-
-.modal-c-new {
-    background-color: #f7f7f7;
-}
-
-.modal-b-new {
-    overflow: auto;
-    max-height: 75vh;
-}
-
-.modal-no-border {
-    border: none;
-}
-
 
 button.link {background:none; border:none;}
 

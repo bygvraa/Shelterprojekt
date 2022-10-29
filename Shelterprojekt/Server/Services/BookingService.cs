@@ -52,20 +52,22 @@ namespace Shelterprojekt.Server.Services
         {
             try
             {
-                var filter1 = Builders<Booking>.Filter.Eq("ShelterId", shelterid);          // filter, der finder bookings for den valgte shelter
-                var filter2 = Builders<Booking>.Filter.Eq("Dato", new BsonDateTime(dato));  // filter, der finder bookings der matcher den valgte dato
+
+                Console.WriteLine("5: " + dato);
+
+                var filter1 = Builders<Booking>.Filter.Eq("ShelterId", shelterid);              // filter, der finder bookings for den valgte shelter
+                var filter2 = Builders<Booking>.Filter.Eq("Dato", new BsonDateTime(dato));      // filter, der finder bookings der matcher den valgte dato
 
 
-                FilterDefinition<Booking> bookingFilter = filter1 & filter2;                // sætter de to filtre sammen til et udtryk
+                FilterDefinition<Booking> bookingFilter = filter1 & filter2;                    // sætter de to filtre sammen til et udtryk
 
-                long count = _db.BookingCollection.CountDocuments(bookingFilter);           // laver en tællevariabel, der optæller antallet af bookings på den valgte shelter på den valgte dato
-
+                var count = await _db.BookingCollection.CountDocumentsAsync(bookingFilter);     // laver en tællevariabel, der optæller antallet af bookings på den valgte shelter på den valgte dato
 
                 if (count > 0) {
-                    return true;                                                            // shelteren er booket på den valgte dato
+                    return true;                                                                // shelteren er booket på den valgte dato
                 }
                 else {
-                    return false;                                                           // shelteren er IKKE booket på den valgte dato
+                    return false;                                                               // shelteren er IKKE booket på den valgte dato
                 }
             }
             catch

@@ -32,8 +32,11 @@ namespace Shelterprojekt.Server.Controllers
         [Route("api/booking/check/{id}/{date}")]
         public async Task<bool> Check(string id, string date)
         {
+            Console.WriteLine("3: " + date);
 
-            DateTime dato = DateTime.Parse(date); 
+            DateTime dato = DateTime.Parse(date);
+
+            Console.WriteLine("4: " + dato);
 
             return await service.GetBookingOnShelter(id, dato);
         }

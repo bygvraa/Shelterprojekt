@@ -11,84 +11,87 @@
 {
     <p><em>Indlæser shelters, vent venligst...</em></p>
     <br />
+    <img style="margin-left: 50px" width="80" src="loading.gif" />
 
 }
 else
 {
-<div class="col-md-8" style="padding-left: initial; padding-right: initial">
+    <div class="col-md-8" style="padding-left: initial; padding-right: initial">
 
-    <table style="width: 80%; height: 100px; margin-bottom: 6px; display: table;">
-        <tbody>
-            <tr>
-                <td>
-                    @foreach (var Shelter in ShelterList)
-                    {
-                        <table class="shelter-card">
-                            <tbody class="shelter-card-tbody">
-                                <tr class="shelter-card-row">
-                                    <td class="shelter-card-cell shelter-card-cell-tip">
-                                        <i class="oi oi-home"></i>
-                                    </td>
-                                    <td class="shelter-card-cell" valign="top">
-                                        <div class="shelter-card-cell-title">
-                                            @Shelter.Properties.Navn
-                                        </div>
+        <table style="width: 80%; height: 100px; margin-bottom: 6px; display: table;">
+            <tbody>
+                <tr>
+                    <td>
+                        @foreach (var Shelter in ShelterList)
+                        {
+                            <table class="shelter-card">
+                                <tbody class="shelter-card-tbody">
+                                    <tr class="shelter-card-row">
 
-                                        <div style="height:40px; display: table-cell; color: black;">
-                                            <div style="display: block;">
-                                                @Shelter.Properties.Beskrivelse
-                                            </div>
-                                        </div>
 
-                                        <div align="right" valign="middle" style="padding-right: 10px;">
-                                            <button class="btn shelter-btn-info" onclick=" window.open('https://www.google.com/maps?q=@Shelter.Geometry.Koordinater.Lat,@Shelter.Geometry.Koordinater.Long', '_blank')">
-                                                Maps
-                                            </button>
+                                        <td class="shelter-card-cell shelter-card-cell-tip">
+                                            <i class="oi oi-home"></i>
+                                        </td>
 
-                                            <button class="btn shelter-btn-info" @onclick="@(async () => await AddBooking(Shelter.Id, Shelter.Properties.Navn))">
-                                                Book
-                                            </button>
-                                        </div>
-
-                                        <div style="display: inline-table">
-                                            <div id="pladser" style="display: table-cell; padding-right: 20px">
-                                                Antal pladser: @Shelter.Properties.AntalPl
-                                            </div>
-                                            <div id="handicap" style="display:table-cell">
-                                                @Shelter.Properties.Handicap
+                                        <td class="shelter-card-cell" valign="top">
+                                            <div class="shelter-card-cell-title">
+                                                @Shelter.Properties.Navn
                                             </div>
 
-                                        </div>
+                                            <div style="height:40px; display: table-cell; color: black;">
+                                                <div style="display: block;">
+                                                    @Shelter.Properties.Beskrivelse
+                                                </div>
+                                            </div>
+
+                                            <div align="right" valign="middle" style="padding-right: 10px;">
+                                                <button class="btn shelter-btn-info" onclick=" window.open('https://www.google.com/maps?q=@Shelter.Geometry.Koordinater.Lat,@Shelter.Geometry.Koordinater.Long', '_blank')">
+                                                    Maps
+                                                </button>
+
+                                                <button class="btn shelter-btn-info" @onclick="@(async () => await AddBooking(Shelter.Id, Shelter.Properties.Navn))">
+                                                    Book
+                                                </button>
+                                            </div>
+
+                                            <div style="display: inline-table">
+                                                <div id="pladser" style="display: table-cell; padding-right: 20px">
+                                                    Antal pladser: @Shelter.Properties.AntalPl
+                                                </div>
+                                                <div id="handicap" style="display: table-cell">
+                                                    @Shelter.Properties.Handicap
+                                                </div>
+
+                                            </div>
+
+                                        </td>
 
 
-                                    </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        }
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    }
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-// Trykkes der på "book shelter"-knappen, ændres "isAdd" til true, og følgende kode køres:
+    // Trykkes der på "book shelter"-knappen, ændres "isAdd" til true, og følgende kode køres:
     if (isAdd)
     {
-        <EditForm  EditContext="@editContext" OnValidSubmit="@(async () => await SaveBooking())">
+        <EditForm EditContext="@editContext" OnValidSubmit="@(async () => await SaveBooking())">
             <DataAnnotationsValidator />
             <ValidationSummary />
 
-            <div class="modal" tabindex="-1" style="display:block" role="dialog">
+            <div class="modal" tabindex="-1" style="display: block" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content" style="background-color: #f7f7f7">
                         <div class="modal-header" style="border: none">
                             <h3 class="modal-title">@ModalTitle</h3>
                             <button type="button" class="close" @onclick="@this.CloseModal">
                                 <span aria-hidden="true" style="font-family: monospace">
-                                    x
+                                    🗙
                                 </span>
                             </button>
                         </div>
@@ -96,23 +99,19 @@ else
                             <form>
                                 <div class="form-group">
 
-
                                     <label for="brugernavn" style="width: 300px">
                                         Brugernavn
                                     </label>
-                                            <InputText @bind-Value="@booking.Brugernavn" />
-                                        <ValidationMessage For="@(() => booking.Brugernavn)" />
-
+                                    <input type="text"
+                                           @bind-value="@booking.Brugernavn" />
+                                    <ValidationMessage For="@(() => booking.Brugernavn)" />
 
                                     <label for="dato" style="width: 300px; padding-top: 20px">
                                         Dato
                                     </label>
                                     <input type="date" min="@dateDisable"
-                                           @bind-value="@booking.Dato"
-                                           @onmouseout="(async () => await CheckBooking(booking.ShelterId, booking.Dato))"
-                                           @onmouseover="@(() =>  PrintTime(booking.Dato))"
-                                           @onblur="(async () => await CheckBooking(booking.ShelterId, booking.Dato))" />
-                                        <ValidationMessage For="@(() => booking.Dato)" />
+                                           @onchange="OnChange" />
+                                    <ValidationMessage For="@(() => booking.Dato)" />
 
                                 </div>
                             </form>
@@ -122,7 +121,9 @@ else
                             <div style="@messageStyles">
                                 @message
                             </div>
-                            <button type="submit" class="btn btn-primary" id="submitBtn" disabled="@formInvalid">Submit</button>
+                            <button type="submit" class="btn btn-primary" id="submitBtn" disabled="@formInvalid">
+                                Submit
+                            </button>
                         </div>
 
                     </div>
@@ -133,15 +134,11 @@ else
     }
 }
 
+
 @code {
 
     // Variabler --------------------------------------------
     //
-
-    // Variabler, der bruges af kalenderen
-    string dateDisable = DateTime.Now.ToString("yyyy-MM-dd");
-    string dateValue;
-
 
     // Variabler til at indlæse booking- og shelter-listerne
     protected List<Booking> BookingList;
@@ -150,7 +147,7 @@ else
     protected Booking booking = new() { Dato = DateTime.Now };
 
 
-    // Variabler, der bruges af data/form validation
+    // Variabler der bruges af data/form validation
     private EditContext editContext;
     private ValidationMessageStore messageStore;
     private bool formInvalid = true;
@@ -159,27 +156,26 @@ else
     private string messageStyles = "visibility:hidden";
 
 
-    // Variabler, der bruges af modal (pop-up vinduet)
+    // Variabler der bruges af modal (pop-up vinduet)
     protected string ModalTitle { get; set; }
     protected Boolean isAdd = false;
+
+    // Variabler der bruges af kalenderen
+    private string dateDisable = DateTime.Now.ToString("yyyy-MM-dd");
+    private string dateValue;
 
 
 
     // Metoder ----------------------------------------------
     //
-    void PrintTime(DateTime date)
-    {
-        Console.WriteLine(DateTime.Now);
-        Console.WriteLine(date);
-    }
 
     protected async Task GetBookings()
     {
-        BookingList = await Http.GetJsonAsync<List<Booking>>("api/booking/index");
+        BookingList = await Http.GetFromJsonAsync<List<Booking>>("api/booking/index");
     }
     protected async Task GetShelters()
     {
-        ShelterList = await Http.GetJsonAsync<List<Shelter>>("api/shelter/index");
+        ShelterList = await Http.GetFromJsonAsync<List<Shelter>>("api/shelter/index");
     }
 
 
@@ -215,30 +211,41 @@ else
 
         messageStyles = "color:green";
         message = "Booking af shelter er nu gennemført";
-
     }
 
     protected async Task CheckBooking(string id, DateTime date)
     {
-        Console.WriteLine(date);
-        string dateString = date.ToLongDateString();
+        Console.WriteLine("1: " + date);
 
         messageStore.Clear();
         CloseMessage();
 
-        if ( await Http.GetJsonAsync<bool>("api/booking/check/" + id + "/" + dateString) == true)
+        try
         {
-            formInvalid = true;
-            messageStore.Add(() => booking.Dato, "Booking er ikke mulig på denne dato, vælg venligst en anden");
+            string getRequest = "api/booking/check/" + id + "/" + date.ToShortDateString();
+            Console.WriteLine("2: " + getRequest);
+
+            if (await Http.GetFromJsonAsync<bool>(getRequest) == true)
+            {
+                formInvalid = true;
+                messageStore.Add(() => booking.Dato, "Booking er ikke mulig på denne dato, prøv venligst en anden");
+            }
+            else
+            {
+                formInvalid = false;
+                dateValue = date.ToString("yyyy-MM-dd");
+            }
         }
-        else
+        catch
         {
-            formInvalid = false;
-            dateValue = date.ToString("yyyy-MM-dd");
-
+            throw;
         }
+    }
 
-
+    protected async Task OnChange(ChangeEventArgs e)
+    {
+        booking.Dato = DateTime.Parse(e.Value.ToString());
+        await CheckBooking(booking.ShelterId, booking.Dato);
     }
 
 
@@ -247,7 +254,6 @@ else
         this.isAdd = false;
         CloseMessage();
     }
-
     protected void CloseMessage()
     {
         messageStyles = "visibility:hidden";
@@ -257,8 +263,6 @@ else
     {
         await GetBookings();
         await GetShelters();
-
     }
-
 
 }

@@ -8,7 +8,9 @@
 
 <div>
     <div style="float:right; margin-bottom:5px">
-        <button class="btn btn-primary" @onclick="@AddBooking">Tilføj Booking</button>
+        <button class="btn btn-primary" @onclick="@AddBooking">
+            Tilføj Booking
+        </button>
     </div>
 </div>
 <br />
@@ -52,10 +54,10 @@ else
     </table>
     if (isAdd)
     {
-        <div class="modal modal-new" tabindex="-1" role="dialog">
+        <div class="modal" tabindex="-1" style="display: block" role="dialog">
             <div class="modal-dialog">
-                <div class="modal-content modal-c-new">
-                    <div class="modal-header modal-no-border">
+                <div class="modal-content" style="background-color: #f7f7f7">
+                    <div class="modal-header" style="border: none">
                         <h3 class="modal-title">@ModalTitle</h3>
                         <button type="button" class="close" @onclick="@this.CloseModal">
                             <span aria-hidden="true">
@@ -75,7 +77,8 @@ else
                                     <option>-- Vælg shelter --</option>
                                     @foreach (var Shelter in this.ShelterList)
                                     {
-                                        <option value="@Shelter.Id" >
+                                        <option value="@Shelter.Id"
+                                                @onclick="@(async () => await CreateShelter(Shelter.Properties.Navn))" >
                                             @Shelter.Properties.Navn
                                         </option>
                                     }
@@ -99,7 +102,7 @@ else
                             </div>
                         </form>
                     </div>
-                    <div class="modal-footer modal-no-border">
+                    <div class="modal-footer" style="border: none">
                         <button class="btn btn-block btn-success" data-dismiss="modal"
                                 @onclick="@(async () => await SaveBooking())" >
                             Gem booking
@@ -111,10 +114,10 @@ else
     }
     if (isDelete == true)
     {
-        <div class="modal modal-new" tabindex="-1" role="dialog">
+        <div class="modal" tabindex="-1" style="display: block" role="dialog">
             <div class="modal-dialog">
-                <div class="modal-content modal-c-new">
-                    <div class="modal-header modal-no-border">
+                <div class="modal-content" style="background-color: #f7f7f7">
+                    <div class="modal-header" style="border: none">
                         <h3 class="modal-title">@ModalTitle</h3>
                     </div>
                     <div class="modal-body">
@@ -132,7 +135,7 @@ else
                             </tr>
                         </table>
                     </div>
-                    <div class="modal-footer modal-no-border">
+                    <div class="modal-footer" style="border: none">
                         <button class="btn btn-danger" @onclick="@(async () => await DeleteBooking(booking.Id))" data-dismiss="modal">
                             Bekræft
                         </button>
@@ -227,6 +230,10 @@ else
         await GetShelters().ConfigureAwait(false);
     }
 
+    protected async Task CreateShelter(string navn)
+    {
+        booking.ShelterNavn = navn;
+    }
 
     protected void CloseModal()
     {
